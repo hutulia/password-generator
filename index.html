@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Генератор паролів</title>
+
+    <style>
+        html, body{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            max-width: 720px;
+            margin: auto;
+            padding: 1em;
+        }
+        .password-as-text{
+            border: 2px solid lightgrey;
+            background: #f7f7f7;
+            display: block;
+            padding: 0.5em;
+            font-size: 2em;
+            font-family: monospace;
+        }
+        .btn{
+            padding: 0.25em 0.5em;
+            font-size: 2em;
+            background: lightgrey;
+        }
+        .predefined-length{
+            padding: 1em;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<h1>Генератор паролів</h1>
+
+<div class="password main-password">
+    <p>
+        <span class="password-as-text js-main-password-holder">Aa1!@#</span>
+    </p>
+
+    <p>
+        <button class="btn copy">⎘</button>
+        <button class="btn renew">🔄</button>
+    </p>
+</div>
+
+<p>
+    <button class="btn use-lower">abc</button>
+    <button class="btn use-upper">ABC</button>
+    <button class="btn use-numbers">123</button>
+    <button class="btn use-special">!@#</button>
+    <input class="set-length" type="number" min="0" max="32" value="16">
+    <button class="predefined-length">4</button>
+    <button class="predefined-length">8</button>
+    <button class="predefined-length">16</button>
+    <button class="predefined-length">32</button>
+</p>
+
+<script type="module">
+import {PasswordGeneratorApp} from "./password-generator-app.js";
+
+window.passwordGeneratorApp = new PasswordGeneratorApp();
+</script>
+
+</body>
+</html>

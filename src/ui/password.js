@@ -1,4 +1,4 @@
-import {PasswordBuilder} from "../../password-builder.js";
+import {PasswordBuilder} from "../password-builder.js";
 import {PasswordAsText} from "./password-as-text.js";
 import {RenewButton} from "./renew-button.js";
 import {CopyButton} from "./copy-button.js";

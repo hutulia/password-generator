@@ -1,10 +1,10 @@
 import {lowerLetters, upperLetters, PasswordBuilder, numbers, specialSymbols} from "./password-builder.js";
-import {Password} from "./src/ui/password.js";
-import {SetLength} from "./src/ui/set-length.js";
-import {UseLower} from "./src/ui/UseLower.js";
-import {UseUpper} from "./src/ui/UseUpper.js";
-import {UseNumbers} from "./src/ui/UseNumbers.js";
-import {UseSpecial} from "./src/ui/UseSpecial.js";
+import {Password} from "./ui/password.js";
+import {SetLength} from "./ui/set-length.js";
+import {UseLower} from "./ui/UseLower.js";
+import {UseUpper} from "./ui/UseUpper.js";
+import {UseNumbers} from "./ui/UseNumbers.js";
+import {UseSpecial} from "./ui/UseSpecial.js";
 
 export class PasswordGeneratorApp {
     /**

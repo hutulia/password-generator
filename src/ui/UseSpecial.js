@@ -1,8 +1,8 @@
-import {PasswordBuilder} from "../password-builder.js";
+import {PasswordBuilder} from "../../password-builder.js";
 import {PasswordAsText} from "./password-as-text.js";
-import {lowerLetters} from "../password-builder.js";
+import {lowerLetters} from "../../password-builder.js";
 
-export class UseUpper{
+export class UseSpecial{
     /**
      *
      * @type {Element}

@@ -1,4 +1,4 @@
-import {PasswordBuilder} from "../password-builder.js";
+import {PasswordBuilder} from "../../password-builder.js";
 
 export class PasswordAsText {
     /**

@@ -1,6 +1,7 @@
 export const lowerLetters = ['a','b','c','d','e','f','g'];
 export const upperLetters = lowerLetters.map((symbol)=>symbol.toUpperCase());
 export const numbers = ['1','2','3','4'];
+export const specialSymbols = ['!','@','#','$','-','_'];
 
 export class PasswordBuilder{
     symbolsToUse = [];
@@ -55,7 +56,7 @@ export class PasswordBuilder{
     }
 
     build(){
-        if(this.length < 1){
+        if(this.length < 1 || !this.symbolsToUse.length){
             return '';
         }
 
@@ -63,9 +64,18 @@ export class PasswordBuilder{
         const symbolsToUse = this.calcSymbolsToUse();
 
         for (let i = 1; i <= this.length; i++) {
-            password += symbolsToUse[Math.floor(Math.random()*symbolsToUse.length)];
+            password += this.getRandomSymbol(symbolsToUse);
         }
 
         return password;
+    }
+
+    /**
+     *
+     * @returns {*}
+     * @param symbols
+     */
+    getRandomSymbol(symbols){
+        return symbols[Math.floor(Math.random()*symbols.length)];
     }
 }

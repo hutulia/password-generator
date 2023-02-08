@@ -24,7 +24,7 @@ export class PasswordGeneratorApp {
      */
     setLength = null;
 
-    defaultLength = 4;
+    defaultLength = 8;
 
     useLowerByDefault = true;
 

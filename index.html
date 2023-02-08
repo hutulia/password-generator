@@ -45,7 +45,7 @@
 
 <div class="password main-password">
     <p>
-        <span class="password-as-text js-main-password-holder">Aa1!@#</span>
+        <span class="password-as-text js-main-password-holder"></span>
     </p>
 
     <p>
@@ -59,7 +59,7 @@
     <button class="btn use-upper">ABC</button>
     <button class="btn use-numbers">123</button>
     <button class="btn use-special">!@#</button>
-    <input class="set-length" type="number" min="0" max="32" value="16" size="3">
+    <input class="set-length" type="number" min="0" max="32" value="" size="3">
     <button class="predefined-length">4</button>
     <button class="predefined-length">8</button>
     <button class="predefined-length">12</button>
@@ -68,11 +68,7 @@
     <button class="predefined-length">32</button>
 </p>
 
-<script type="module">
-import {PasswordGeneratorApp} from "./password-generator-app.js";
-
-window.passwordGeneratorApp = new PasswordGeneratorApp();
-</script>
+<script type="module" src="index.js"></script>
 
 </body>
 </html>

@@ -44,17 +44,19 @@ export class PasswordBuilderBySets extends PasswordBuilder{
 
         if(this.setsToUse.length){
             while(indexesCanBeForce.length){
-                this.setsToUse.sort(() => Math.random() - 0.5);
+                //this.setsToUse.sort(() => Math.random() - 0.5);
                 this.setsToUse.map(set => {
                     if(indexesCanBeForce.length < 1){
                         return;
                     }
 
                     indexesCanBeForce = indexesCanBeForce.sort(() => Math.random() - 0.5);
+
                     let indexToForce = indexesCanBeForce[0];
+                    indexesCanBeForce.splice(0, 1);
+
                     let forcedSymbol = set.getRandomSymbol();
                     password[indexToForce] = forcedSymbol;
-                    indexesCanBeForce.splice(0, 1);
                     console.log(set.name,indexToForce+1,forcedSymbol);
                 });
             }

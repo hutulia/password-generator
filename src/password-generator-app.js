@@ -5,11 +5,13 @@ import {UseLower} from "./ui/UseLower.js";
 import {UseUpper} from "./ui/UseUpper.js";
 import {UseNumbers} from "./ui/UseNumbers.js";
 import {UseSpecial} from "./ui/UseSpecial.js";
+import {PasswordBuilderBySets} from "./password-builder-by-sets.js";
+import {SymbolsSet} from "./SymbolsSet.js";
 
 export class PasswordGeneratorApp {
     /**
      *
-     * @type {PasswordBuilder}
+     * @type {PasswordBuilderBySets}
      */
     passwordBuilder = null;
     /**
@@ -57,8 +59,13 @@ export class PasswordGeneratorApp {
      */
     useSpecial = null;
 
+    setOfLower = new SymbolsSet('lower-set',lowerLetters);
+    setOfUpper = new SymbolsSet('upper-set',upperLetters);
+    setOfNumbers = new SymbolsSet('numbers-set',numbers);
+    setOfSpecial = new SymbolsSet('special-set',specialSymbols);
+
     constructor() {
-        this.passwordBuilder = new PasswordBuilder();
+        this.passwordBuilder = new PasswordBuilderBySets();
         this.setLength = new SetLength(document.querySelector('.set-length'));
         this.mainPassword = new Password(document.querySelector('.main-password'),this.passwordBuilder);
         this.useLower = new UseLower(document.querySelector('.use-lower'));
@@ -91,7 +98,7 @@ export class PasswordGeneratorApp {
         }
 
         this.useLower.getElement().addEventListener('click',() => {
-            this.passwordBuilder.setSymbolsToUse(this.calcSymbolsForPasswordBuilderToUse());
+            this.updateSetsToUse();
             this.mainPassword.renew();
         });
 
@@ -102,7 +109,7 @@ export class PasswordGeneratorApp {
         }
 
         this.useUpper.getElement().addEventListener('click',() => {
-            this.passwordBuilder.setSymbolsToUse(this.calcSymbolsForPasswordBuilderToUse());
+            this.updateSetsToUse();
             this.mainPassword.renew();
         });
 
@@ -113,7 +120,7 @@ export class PasswordGeneratorApp {
         }
 
         this.useNumbers.getElement().addEventListener('click',() => {
-            this.passwordBuilder.setSymbolsToUse(this.calcSymbolsForPasswordBuilderToUse());
+            this.updateSetsToUse();
             this.mainPassword.renew();
         });
 
@@ -124,33 +131,37 @@ export class PasswordGeneratorApp {
         }
 
         this.useSpecial.getElement().addEventListener('click',() => {
-            this.passwordBuilder.setSymbolsToUse(this.calcSymbolsForPasswordBuilderToUse());
+            this.updateSetsToUse();
             this.mainPassword.renew();
         });
 
-        this.passwordBuilder.setSymbolsToUse(this.calcSymbolsForPasswordBuilderToUse());
+        this.updateSetsToUse();
         this.mainPassword.renew();
     }
 
-    calcSymbolsForPasswordBuilderToUse(){
-        let symbols = [];
-
+    updateSetsToUse(){
         if(this.useLower.active()){
-            symbols = symbols.concat(lowerLetters);
+            this.passwordBuilder.useSymbolsSet(this.setOfLower);
+        }else{
+            this.passwordBuilder.doNotUseSymbolsSet(this.setOfLower);
         }
 
         if(this.useUpper.active()){
-            symbols = symbols.concat(upperLetters);
+            this.passwordBuilder.useSymbolsSet(this.setOfUpper);
+        }else{
+            this.passwordBuilder.doNotUseSymbolsSet(this.setOfUpper);
         }
 
         if(this.useNumbers.active()){
-            symbols = symbols.concat(numbers);
+            this.passwordBuilder.useSymbolsSet(this.setOfNumbers);
+        }else{
+            this.passwordBuilder.doNotUseSymbolsSet(this.setOfNumbers);
         }
 
         if(this.useSpecial.active()){
-            symbols = symbols.concat(specialSymbols);
+            this.passwordBuilder.useSymbolsSet(this.setOfSpecial);
+        }else{
+            this.passwordBuilder.doNotUseSymbolsSet(this.setOfSpecial);
         }
-
-        return symbols;
     }
 }

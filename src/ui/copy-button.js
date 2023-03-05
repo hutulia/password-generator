@@ -1,9 +1,8 @@
-import {PasswordBuilder} from "../password-builder.js";
 import {PasswordAsText} from "./password-as-text.js";
+import CopyTextToClipboard from "../CopyTextToClipboard.js";
 
-export class CopyButton{
+export class CopyButton {
     /**
-     *
      * @type {Element}
      */
     button = null;
@@ -17,32 +16,28 @@ export class CopyButton{
      * @type {string}
      */
     copiedSymbol = '✅';
+
     /**
-     *
      * @type {PasswordAsText}
      */
     passwordAsText = null;
 
+    /**
+     * @param {Element} button
+     * @param {PasswordAsText} passwordAsText
+     */
     constructor(button, passwordAsText) {
         this.button = button;
         this.passwordAsText = passwordAsText;
         this.button.innerHTML = this.toCopySymbol;
-        this.button.addEventListener('click',()=>{this.copy()});
+        this.button.onclick = () => this.copy();
     }
 
-    copy(){
-        let input = document.createElement('input');
-        //document.body.appendChild(input);
-        input.value = this.passwordAsText.getPasswordText();
-        input.select();
-        input.setSelectionRange(0, 99999); // For mobile devices
-
-        // Copy the text inside the text field
-        navigator.clipboard.writeText(input.value);
-
-        input.remove();
-
+    copy() {
+        CopyTextToClipboard.copy(this.passwordAsText.getPasswordText());
         this.button.innerHTML = this.copiedSymbol;
-        setTimeout(()=>{this.button.innerHTML = this.toCopySymbol},500);
+        setTimeout(() => {
+            this.button.innerHTML = this.toCopySymbol
+        }, 500);
     }
 }

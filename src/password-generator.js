@@ -16,7 +16,7 @@ export class PasswordGenerator {
      */
     mainPassword = null;
 
-    defaultLength = 8;
+    defaultLength = 5;
 
     useLowerByDefault = true;
 
@@ -56,6 +56,7 @@ export class PasswordGenerator {
 
     constructor() {
         this.passwordBuilder = new PasswordBuilderBySets();
+        this.passwordBuilder.setLength(this.defaultLength);
 
         this.mainPassword = new Password(document.querySelector('.main-password'),this.passwordBuilder);
         this.useLower = new UseSetIndicator(document.querySelector('.use-lower'));
@@ -63,7 +64,6 @@ export class PasswordGenerator {
         this.useNumbers = new UseSetIndicator(document.querySelector('.use-numbers'));
         this.useSpecial = new UseSetIndicator(document.querySelector('.use-special'));
 
-        this.passwordBuilder.setLength(this.defaultLength);
 
         if(this.useLowerByDefault){
             this.useLower.markActive();

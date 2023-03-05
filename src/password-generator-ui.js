@@ -31,8 +31,6 @@ export class PasswordGeneratorUi {
         this.root = rootElement;
         this.passwordGenerator = passwordGenerator;
         this.controls.length = new LengthControl(this.root.querySelector('.set-length'), this);
-        this.controls.length.setLength(this.passwordGenerator.defaultLength);
-
         this.controls.predefinedLength4 = new PredefinedLengthControl(this.root.querySelector('.pl4'), this);
         this.controls.predefinedLength8 = new PredefinedLengthControl(this.root.querySelector('.pl8'), this);
         this.controls.predefinedLength12 = new PredefinedLengthControl(this.root.querySelector('.pl12'), this);

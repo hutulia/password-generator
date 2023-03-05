@@ -1,11 +1,10 @@
 import {lowerLetters, upperLetters, numbers, specialSymbols} from "./password-builder.js";
 import {Password} from "./ui/password.js";
-import {SetLength} from "./ui/set-length.js";
 import {PasswordBuilderBySets} from "./password-builder-by-sets.js";
 import {SymbolsSet} from "./SymbolsSet.js";
 import {UseSetIndicator} from "./ui/UseSetIndicator.js";
 
-export class PasswordGeneratorApp {
+export class PasswordGenerator {
     /**
      *
      * @type {PasswordBuilderBySets}
@@ -16,12 +15,6 @@ export class PasswordGeneratorApp {
      * @type {Password}
      */
     mainPassword = null;
-
-    /**
-     *
-     * @type {SetLength}
-     */
-    setLength = null;
 
     defaultLength = 8;
 
@@ -63,7 +56,7 @@ export class PasswordGeneratorApp {
 
     constructor() {
         this.passwordBuilder = new PasswordBuilderBySets();
-        this.setLength = new SetLength(document.querySelector('.set-length'));
+
         this.mainPassword = new Password(document.querySelector('.main-password'),this.passwordBuilder);
         this.useLower = new UseSetIndicator(document.querySelector('.use-lower'));
         this.useUpper = new UseSetIndicator(document.querySelector('.use-upper'));
@@ -71,22 +64,6 @@ export class PasswordGeneratorApp {
         this.useSpecial = new UseSetIndicator(document.querySelector('.use-special'));
 
         this.passwordBuilder.setLength(this.defaultLength);
-        this.setLength.setLength(this.defaultLength);
-
-        this.setLength.getElement().addEventListener('change',()=>{
-            console.log('length changed');
-            this.passwordBuilder.setLength(this.setLength.getElement().value);
-            this.mainPassword.setPassword(this.passwordBuilder.build());
-        });
-
-        document.querySelectorAll('.predefined-length').forEach((element) => {
-            element.addEventListener('click',() => {
-                const value = element.innerHTML;
-                this.passwordBuilder.setLength(value);
-                this.setLength.setLength(value);
-                this.mainPassword.renew();
-            });
-        });
 
         if(this.useLowerByDefault){
             this.useLower.markActive();

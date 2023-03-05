@@ -1,14 +1,14 @@
-import {PasswordBuilder} from "../password-builder.js";
-import {PasswordAsText} from "./password-as-text.js";
+import {PasswordBuilderService} from "../../services/password-builder.service.js";
+import {PasswordAsText} from "../views/password-as-text.js";
 
-export class RenewButton {
+export class RenewPasswordAction {
     /**
      * @type {Element}
      */
     button = null;
 
     /**
-     * @type {PasswordBuilder}
+     * @type {PasswordBuilderService}
      */
     passwordBuilder = null;
 
@@ -19,7 +19,7 @@ export class RenewButton {
 
     /**
      * @param {Element} button
-     * @param {PasswordBuilder} passwordBuilder
+     * @param {PasswordBuilderService} passwordBuilder
      * @param {PasswordAsText} passwordAsText
      */
     constructor(button, passwordBuilder, passwordAsText) {

@@ -1,4 +1,4 @@
-export class SymbolsSet{
+export class SymbolsSetService {
     name = '';
 
     items = [];

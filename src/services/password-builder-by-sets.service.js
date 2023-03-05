@@ -1,7 +1,6 @@
-import {lowerLetters, numbers, PasswordBuilder, specialSymbols, upperLetters} from "./password-builder.js";
-import {SymbolsSet} from "./SymbolsSet.js";
+import {PasswordBuilderService} from "./password-builder.service.js";
 
-export class PasswordBuilderBySets extends PasswordBuilder{
+export class PasswordBuilderBySetsService extends PasswordBuilderService{
     setsToUse = [];
 
     constructor() {

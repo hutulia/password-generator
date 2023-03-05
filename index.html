@@ -43,31 +43,33 @@
 <body>
 <h1>Генератор паролів</h1>
 
-<div class="password main-password">
-    <p class="password-as-text"></p>
+<div id="password-generator">
+    <div class="password main-password">
+        <p class="password-as-text"></p>
+
+        <p>
+            <button class="btn copy">⎘</button>
+            <button class="btn renew">🔄</button>
+        </p>
+    </div>
 
     <p>
-        <button class="btn copy">⎘</button>
-        <button class="btn renew">🔄</button>
+        <button class="btn use-lower">abc</button>
+        <button class="btn use-upper">ABC</button>
+        <button class="btn use-numbers">123</button>
+        <button class="btn use-special">!@#</button>
+        <input class="set-length" type="number" min="0" max="32" value="" size="3">
+        <button class="predefined-length pl4">4</button>
+        <button class="predefined-length pl8">8</button>
+        <button class="predefined-length pl12">12</button>
+        <button class="predefined-length pl16">16</button>
+        <button class="predefined-length pl24">24</button>
+        <button class="predefined-length pl32">32</button>
     </p>
 </div>
 
-<p>
-    <button class="btn use-lower">abc</button>
-    <button class="btn use-upper">ABC</button>
-    <button class="btn use-numbers">123</button>
-    <button class="btn use-special">!@#</button>
-    <input class="set-length" type="number" min="0" max="32" value="" size="3">
-    <button class="predefined-length">4</button>
-    <button class="predefined-length">8</button>
-    <button class="predefined-length">12</button>
-    <button class="predefined-length">16</button>
-    <button class="predefined-length">24</button>
-    <button class="predefined-length">32</button>
-</p>
-
-<script type="module" src="dist/bundle.js?v=2"></script>
-<!--script type="module" src="src/index.js"></script-->
+<!--script type="module" src="dist/bundle.js?v=2"></script-->
+<script type="module" src="src/index.js"></script>
 
 </body>
 </html>

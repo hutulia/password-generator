@@ -1,4 +1,4 @@
-export class UseSetIndicator {
+export class UseSetIndicatorControl {
     /**
      *
      * @type {Element}

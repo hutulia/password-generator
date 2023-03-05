@@ -1,9 +1,9 @@
-import {PasswordBuilder} from "../password-builder.js";
-import {PasswordAsText} from "./password-as-text.js";
-import {RenewButton} from "./renew-button.js";
-import {CopyButton} from "./copy-button.js";
+import {PasswordBuilderService} from "../../services/password-builder.service.js";
+import {PasswordAsText} from "../views/password-as-text.js";
+import {RenewPasswordAction} from "../actions/renew-password.action.js";
+import {CopyPasswordAction} from "../actions/copy-password.action.js";
 
-export class Password{
+export class PasswordBlock {
     /**
      *
      * @type {Element}
@@ -18,13 +18,13 @@ export class Password{
 
     /**
      *
-     * @type {PasswordBuilder}
+     * @type {PasswordBuilderService}
      */
     passwordBuilder = null;
 
     /**
      *
-     * @type {CopyButton}
+     * @type {CopyPasswordAction}
      */
     renewButton = null;
 
@@ -33,8 +33,8 @@ export class Password{
         this.otterElement = otterElement;
         this.passwordAsText = new PasswordAsText(this.otterElement.querySelector('.password-as-text'));
 
-        this.renewButton = new RenewButton(this.otterElement.querySelector('.renew'), this.passwordBuilder, this.passwordAsText);
-        this.renewButton = new CopyButton(this.otterElement.querySelector('.copy'), this.passwordAsText);
+        this.renewButton = new RenewPasswordAction(this.otterElement.querySelector('.renew'), this.passwordBuilder, this.passwordAsText);
+        this.renewButton = new CopyPasswordAction(this.otterElement.querySelector('.copy'), this.passwordAsText);
     }
 
     setPassword(password){

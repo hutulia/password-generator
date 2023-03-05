@@ -1,18 +1,18 @@
-import {lowerLetters, upperLetters, numbers, specialSymbols} from "./password-builder.js";
-import {Password} from "./ui/password.js";
-import {PasswordBuilderBySets} from "./password-builder-by-sets.js";
-import {SymbolsSet} from "./SymbolsSet.js";
-import {UseSetIndicator} from "./ui/UseSetIndicator.js";
+import {lowerLetters, upperLetters, numbers, specialSymbols} from "./password-builder.service.js";
+import {PasswordBlock} from "../ui/blocks/password.block.js";
+import {PasswordBuilderBySetsService} from "./password-builder-by-sets.service.js";
+import {SymbolsSetService} from "./symbols-set.service.js";
+import {UseSetIndicatorControl} from "../ui/controls/use-set-indicator.control.js";
 
-export class PasswordGenerator {
+export class PasswordGeneratorService {
     /**
      *
-     * @type {PasswordBuilderBySets}
+     * @type {PasswordBuilderBySetsService}
      */
     passwordBuilder = null;
     /**
      *
-     * @type {Password}
+     * @type {PasswordBlock}
      */
     mainPassword = null;
 
@@ -27,42 +27,42 @@ export class PasswordGenerator {
 
     /**
      *
-     * @type {UseSetIndicator}
+     * @type {UseSetIndicatorControl}
      */
     useLower = null;
 
     /**
      *
-     * @type {UseSetIndicator}
+     * @type {UseSetIndicatorControl}
      */
     useUpper = null;
 
     /**
      *
-     * @type {UseSetIndicator}
+     * @type {UseSetIndicatorControl}
      */
     useNumbers = null;
 
     /**
      *
-     * @type {UseSetIndicator}
+     * @type {UseSetIndicatorControl}
      */
     useSpecial = null;
 
-    setOfLower = new SymbolsSet('lower-set',lowerLetters);
-    setOfUpper = new SymbolsSet('upper-set',upperLetters);
-    setOfNumbers = new SymbolsSet('numbers-set',numbers);
-    setOfSpecial = new SymbolsSet('special-set',specialSymbols);
+    setOfLower = new SymbolsSetService('lower-set',lowerLetters);
+    setOfUpper = new SymbolsSetService('upper-set',upperLetters);
+    setOfNumbers = new SymbolsSetService('numbers-set',numbers);
+    setOfSpecial = new SymbolsSetService('special-set',specialSymbols);
 
     constructor() {
-        this.passwordBuilder = new PasswordBuilderBySets();
+        this.passwordBuilder = new PasswordBuilderBySetsService();
         this.passwordBuilder.setLength(this.defaultLength);
 
-        this.mainPassword = new Password(document.querySelector('.main-password'),this.passwordBuilder);
-        this.useLower = new UseSetIndicator(document.querySelector('.use-lower'));
-        this.useUpper = new UseSetIndicator(document.querySelector('.use-upper'));
-        this.useNumbers = new UseSetIndicator(document.querySelector('.use-numbers'));
-        this.useSpecial = new UseSetIndicator(document.querySelector('.use-special'));
+        this.mainPassword = new PasswordBlock(document.querySelector('.main-password'),this.passwordBuilder);
+        this.useLower = new UseSetIndicatorControl(document.querySelector('.use-lower'));
+        this.useUpper = new UseSetIndicatorControl(document.querySelector('.use-upper'));
+        this.useNumbers = new UseSetIndicatorControl(document.querySelector('.use-numbers'));
+        this.useSpecial = new UseSetIndicatorControl(document.querySelector('.use-special'));
 
 
         if(this.useLowerByDefault){

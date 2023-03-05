@@ -3,7 +3,7 @@ export const upperLetters = lowerLetters.map((symbol)=>symbol.toUpperCase());
 export const numbers = ['1','2','3','4'];
 export const specialSymbols = ['!','@','#','$','-','_'];
 
-export class PasswordBuilder{
+export class PasswordBuilderService {
     symbolsToUse = [];
 
     symbolsToNotUse = [];

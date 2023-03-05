@@ -1,15 +1,15 @@
-import {PasswordGenerator} from "./password-generator.js";
-import {LengthControl} from "./ui/password/controls/length.control.js";
-import {PredefinedLengthControl} from "./ui/password/controls/predefined-length.control.js";
+import {PasswordGeneratorService} from "../../services/password-generator.service.js";
+import {LengthControl} from "../controls/length.control.js";
+import {PredefinedLengthControl} from "../controls/predefined-length.control.js";
 
-export class PasswordGeneratorUi {
+export class PasswordGeneratorAppBlock {
     /**
      * @type {Element}
      */
     root = null;
 
     /**
-     * @type {PasswordGenerator}
+     * @type {PasswordGeneratorService}
      */
     passwordGenerator = null;
 
@@ -25,7 +25,7 @@ export class PasswordGeneratorUi {
 
     /**
      * @param {Element} rootElement
-     * @param {PasswordGenerator} passwordGenerator
+     * @param {PasswordGeneratorService} passwordGenerator
      */
     constructor(rootElement, passwordGenerator) {
         this.root = rootElement;

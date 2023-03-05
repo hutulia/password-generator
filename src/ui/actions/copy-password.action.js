@@ -1,7 +1,7 @@
-import {PasswordAsText} from "./password-as-text.js";
-import CopyTextToClipboard from "../CopyTextToClipboard.js";
+import {PasswordAsText} from "../views/password-as-text.js";
+import CopyTextToClipboardService from "../../services/copy-text-to-clipboard.service.js";
 
-export class CopyButton {
+export class CopyPasswordAction {
     /**
      * @type {Element}
      */
@@ -34,7 +34,7 @@ export class CopyButton {
     }
 
     copy() {
-        CopyTextToClipboard.copy(this.passwordAsText.getPasswordText());
+        CopyTextToClipboardService.copy(this.passwordAsText.getPasswordText());
         this.button.innerHTML = this.copiedSymbol;
         setTimeout(() => {
             this.button.innerHTML = this.toCopySymbol

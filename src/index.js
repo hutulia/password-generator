@@ -1,5 +1,5 @@
-import {PasswordGenerator} from "./password-generator.js";
-import {PasswordGeneratorUi} from "./password-generator-ui.js";
+import {PasswordGeneratorService} from "./services/password-generator.service.js";
+import {PasswordGeneratorAppBlock} from "./ui/blocks/password-generator-app.block.js";
 
-window.passwordGenerator = new PasswordGenerator();
-window.passwordGeneratorUi = new PasswordGeneratorUi(document.getElementById('password-generator'), window.passwordGenerator);
+window.passwordGenerator = new PasswordGeneratorService();
+window.passwordGeneratorUi = new PasswordGeneratorAppBlock(document.getElementById('password-generator'), window.passwordGenerator);

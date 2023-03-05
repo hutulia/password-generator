@@ -1,4 +1,4 @@
-import {PasswordGeneratorUi} from "../../../password-generator-ui.js";
+import {PasswordGeneratorAppBlock} from "../blocks/password-generator-app.block.js";
 
 export class LengthControl {
     /**
@@ -8,13 +8,13 @@ export class LengthControl {
 
 
     /**
-     * @type {PasswordGeneratorUi}
+     * @type {PasswordGeneratorAppBlock}
      */
     passwordGeneratorUi = null;
 
     /**
      * @param {Element} element
-     * @param {PasswordGeneratorUi} passwordGeneratorUi
+     * @param {PasswordGeneratorAppBlock} passwordGeneratorUi
      */
     constructor(element, passwordGeneratorUi) {
         this.element = element;

@@ -1,4 +1,4 @@
-import {PasswordGeneratorService} from "../../services/password-generator.service.js";
+import {PasswordGeneratorService} from "../../../services/password-generator.service.js";
 import {LengthControl} from "../controls/length.control.js";
 import {PredefinedLengthControl} from "../controls/predefined-length.control.js";
 

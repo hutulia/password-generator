@@ -1,5 +1,5 @@
-import {PasswordAsText} from "../views/password-as-text.js";
-import CopyTextToClipboardService from "../../services/copy-text-to-clipboard.service.js";
+import {PasswordAsTextView} from "../views/password-as-text.view.js";
+import CopyTextToClipboardService from "../../../services/copy-text-to-clipboard.service.js";
 
 export class CopyPasswordAction {
     /**
@@ -18,13 +18,13 @@ export class CopyPasswordAction {
     copiedSymbol = '✅';
 
     /**
-     * @type {PasswordAsText}
+     * @type {PasswordAsTextView}
      */
     passwordAsText = null;
 
     /**
      * @param {Element} button
-     * @param {PasswordAsText} passwordAsText
+     * @param {PasswordAsTextView} passwordAsText
      */
     constructor(button, passwordAsText) {
         this.button = button;

@@ -5,13 +5,13 @@ export class PredefinedLengthControl {
     element = null;
 
     /**
-     * @type {PasswordGeneratorAppBlock}
+     * @type {PasswordGeneratorAppComponent}
      */
     passwordGeneratorUi = null;
 
     /**
      * @param {Element} element
-     * @param {PasswordGeneratorAppBlock} passwordGeneratorUi
+     * @param {PasswordGeneratorAppComponent} passwordGeneratorUi
      */
     constructor(element, passwordGeneratorUi) {
         this.element = element;

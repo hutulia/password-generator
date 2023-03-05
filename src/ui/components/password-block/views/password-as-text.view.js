@@ -1,4 +1,4 @@
-import {Component} from "../../lib/component.js";
+import {Component} from "../../../lib/component.js";
 
 export class PasswordAsTextView extends Component{
     /**

@@ -1,12 +1,8 @@
-import {PasswordBuilderService} from "../../../services/password-builder.service.js";
+import {PasswordBuilderService} from "../../../../services/password-builder.service.js";
 import {PasswordAsTextView} from "../views/password-as-text.view.js";
+import {Component} from "../../../lib/component.js";
 
-export class RenewPasswordAction {
-    /**
-     * @type {Element}
-     */
-    button = null;
-
+export class RenewPasswordAction extends Component{
     /**
      * @type {PasswordBuilderService}
      */
@@ -22,10 +18,10 @@ export class RenewPasswordAction {
      * @param {PasswordBuilderService} passwordBuilder
      * @param {PasswordAsTextView} passwordAsText
      */
-    constructor(button, passwordBuilder, passwordAsText) {
-        this.button = button;
+    constructor(button, passwordBuilder, passwordAsText){
+        super(button);
         this.passwordBuilder = passwordBuilder;
         this.passwordAsText = passwordAsText;
-        this.button.onclick = () => this.passwordAsText.setPassword(this.passwordBuilder.build());
+        this.element.onclick = () => this.passwordAsText.setPassword(this.passwordBuilder.build());
     }
 }

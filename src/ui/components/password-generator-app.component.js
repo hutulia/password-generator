@@ -1,8 +1,8 @@
-import {PasswordGeneratorService} from "../../../services/password-generator.service.js";
-import {LengthControl} from "../controls/length.control.js";
-import {PredefinedLengthControl} from "../controls/predefined-length.control.js";
+import {PasswordGeneratorService} from "../../services/password-generator.service.js";
+import {LengthControl} from "./password-block/controls/length.control.js";
+import {PredefinedLengthControl} from "./password-block/controls/predefined-length.control.js";
 
-export class PasswordGeneratorAppBlock {
+export class PasswordGeneratorAppComponent {
     /**
      * @type {Element}
      */

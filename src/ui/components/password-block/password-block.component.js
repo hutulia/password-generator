@@ -1,9 +1,9 @@
 import {PasswordBuilderService} from "../../../services/password-builder.service.js";
-import {PasswordAsTextView} from "../views/password-as-text.view.js";
-import {RenewPasswordAction} from "../actions/renew-password.action.js";
-import {CopyPasswordAction} from "../actions/copy-password.action.js";
+import {PasswordAsTextView} from "./views/password-as-text.view.js";
+import {RenewPasswordAction} from "./actions/renew-password.action.js";
+import {CopyPasswordAction} from "./actions/copy-password.action.js";
 
-export class PasswordBlock {
+export class PasswordBlockComponent {
     /**
      *
      * @type {Element}

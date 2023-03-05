@@ -1,12 +1,8 @@
 import {PasswordAsTextView} from "../views/password-as-text.view.js";
-import CopyTextToClipboardService from "../../../services/copy-text-to-clipboard.service.js";
+import CopyTextToClipboardService from "../../../../services/copy-text-to-clipboard.service.js";
+import {Component} from "../../../lib/component.js";
 
-export class CopyPasswordAction {
-    /**
-     * @type {Element}
-     */
-    button = null;
-
+export class CopyPasswordAction extends Component{
     /**
      * @type {string}
      */
@@ -27,17 +23,17 @@ export class CopyPasswordAction {
      * @param {PasswordAsTextView} passwordAsText
      */
     constructor(button, passwordAsText) {
-        this.button = button;
+        super(button);
         this.passwordAsText = passwordAsText;
-        this.button.innerHTML = this.toCopySymbol;
-        this.button.onclick = () => this.copy();
+        this.element.innerHTML = this.toCopySymbol;
+        this.element.onclick = () => this.copy();
     }
 
     copy() {
         CopyTextToClipboardService.copy(this.passwordAsText.getPasswordText());
-        this.button.innerHTML = this.copiedSymbol;
+        this.element.innerHTML = this.copiedSymbol;
         setTimeout(() => {
-            this.button.innerHTML = this.toCopySymbol
+            this.element.innerHTML = this.toCopySymbol
         }, 500);
     }
 }

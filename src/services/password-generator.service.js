@@ -1,8 +1,8 @@
 import {lowerLetters, upperLetters, numbers, specialSymbols} from "./password-builder.service.js";
-import {PasswordBlock} from "../ui/components/blocks/password.block.js";
+import {PasswordBlockComponent} from "../ui/components/password-block/password-block.component.js";
 import {PasswordBuilderBySetsService} from "./password-builder-by-sets.service.js";
 import {SymbolsSetService} from "./symbols-set.service.js";
-import {UseSetIndicatorControl} from "../ui/components/controls/use-set-indicator.control.js";
+import {UseSetIndicatorControl} from "../ui/components/password-block/controls/use-set-indicator.control.js";
 
 export class PasswordGeneratorService {
     /**
@@ -12,7 +12,7 @@ export class PasswordGeneratorService {
     passwordBuilder = null;
     /**
      *
-     * @type {PasswordBlock}
+     * @type {PasswordBlockComponent}
      */
     mainPassword = null;
 
@@ -58,7 +58,7 @@ export class PasswordGeneratorService {
         this.passwordBuilder = new PasswordBuilderBySetsService();
         this.passwordBuilder.setLength(this.defaultLength);
 
-        this.mainPassword = new PasswordBlock(document.querySelector('.main-password'),this.passwordBuilder);
+        this.mainPassword = new PasswordBlockComponent(document.querySelector('.main-password'),this.passwordBuilder);
         this.useLower = new UseSetIndicatorControl(document.querySelector('.use-lower'));
         this.useUpper = new UseSetIndicatorControl(document.querySelector('.use-upper'));
         this.useNumbers = new UseSetIndicatorControl(document.querySelector('.use-numbers'));

@@ -1,5 +1,5 @@
 import {PasswordGeneratorService} from "./services/password-generator.service.js";
-import {PasswordGeneratorAppBlock} from "./ui/components/blocks/password-generator-app.block.js";
+import {PasswordGeneratorAppComponent} from "./ui/components/password-generator-app.component.js";
 
 window.passwordGenerator = new PasswordGeneratorService();
-window.passwordGeneratorUi = new PasswordGeneratorAppBlock(document.getElementById('password-generator'), window.passwordGenerator);
+window.passwordGeneratorUi = new PasswordGeneratorAppComponent(document.getElementById('password-generator'), window.passwordGenerator);

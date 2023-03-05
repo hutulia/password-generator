@@ -1,11 +1,12 @@
 import {PasswordGenerator} from "./password-generator.js";
-import {SetLength} from "./ui/set-length.js";
+import {LengthControl} from "./ui/password/controls/length.control.js";
+import {PredefinedLengthControl} from "./ui/password/controls/predefined-length.control.js";
 
 export class PasswordGeneratorUi {
     /**
      * @type {Element}
      */
-    rootElement = null;
+    root = null;
 
     /**
      * @type {PasswordGenerator}
@@ -14,32 +15,29 @@ export class PasswordGeneratorUi {
 
     controls = {
         length: null,
+        predefinedLength4: null,
+        predefinedLength8: null,
+        predefinedLength12: null,
+        predefinedLength16: null,
+        predefinedLength24: null,
+        predefinedLength32: null,
     };
 
-    defaultLength = 8;
     /**
      * @param {Element} rootElement
      * @param {PasswordGenerator} passwordGenerator
      */
     constructor(rootElement, passwordGenerator) {
-        this.rootElement = rootElement;
+        this.root = rootElement;
         this.passwordGenerator = passwordGenerator;
-        this.defaultLength = this.passwordGenerator.defaultLength;
-        this.controls.length = new SetLength(document.querySelector('.set-length'));
-        this.controls.length.setLength(this.defaultLength);
+        this.controls.length = new LengthControl(this.root.querySelector('.set-length'), this);
+        this.controls.length.setLength(this.passwordGenerator.defaultLength);
 
-        this.controls.length.getElement().addEventListener('change',()=>{
-            this.passwordGenerator.passwordBuilder.setLength(this.controls.length.getElement().value);
-            this.passwordGenerator.mainPassword.setPassword(this.passwordGenerator.passwordBuilder.build());
-        });
-
-        document.querySelectorAll('.predefined-length').forEach((element) => {
-            element.addEventListener('click',() => {
-                const value = element.innerHTML;
-                this.passwordGenerator.passwordBuilder.setLength(value);
-                this.controls.length.setLength(value);
-                this.passwordGenerator.mainPassword.renew();
-            });
-        });
+        this.controls.predefinedLength4 = new PredefinedLengthControl(this.root.querySelector('.pl4'), this);
+        this.controls.predefinedLength8 = new PredefinedLengthControl(this.root.querySelector('.pl8'), this);
+        this.controls.predefinedLength12 = new PredefinedLengthControl(this.root.querySelector('.pl12'), this);
+        this.controls.predefinedLength16 = new PredefinedLengthControl(this.root.querySelector('.pl16'), this);
+        this.controls.predefinedLength24 = new PredefinedLengthControl(this.root.querySelector('.pl24'), this);
+        this.controls.predefinedLength32 = new PredefinedLengthControl(this.root.querySelector('.pl32'), this);
     }
 }

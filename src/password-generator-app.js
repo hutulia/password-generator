@@ -1,12 +1,9 @@
-import {lowerLetters, upperLetters, PasswordBuilder, numbers, specialSymbols} from "./password-builder.js";
+import {lowerLetters, upperLetters, numbers, specialSymbols} from "./password-builder.js";
 import {Password} from "./ui/password.js";
 import {SetLength} from "./ui/set-length.js";
-import {UseLower} from "./ui/UseLower.js";
-import {UseUpper} from "./ui/UseUpper.js";
-import {UseNumbers} from "./ui/UseNumbers.js";
-import {UseSpecial} from "./ui/UseSpecial.js";
 import {PasswordBuilderBySets} from "./password-builder-by-sets.js";
 import {SymbolsSet} from "./SymbolsSet.js";
+import {UseSetIndicator} from "./ui/UseSetIndicator.js";
 
 export class PasswordGeneratorApp {
     /**
@@ -37,25 +34,25 @@ export class PasswordGeneratorApp {
 
     /**
      *
-     * @type {UseLower}
+     * @type {UseSetIndicator}
      */
     useLower = null;
 
     /**
      *
-     * @type {UseUpper}
+     * @type {UseSetIndicator}
      */
     useUpper = null;
 
     /**
      *
-     * @type {UseNumbers}
+     * @type {UseSetIndicator}
      */
     useNumbers = null;
 
     /**
      *
-     * @type {UseSpecial}
+     * @type {UseSetIndicator}
      */
     useSpecial = null;
 
@@ -68,10 +65,10 @@ export class PasswordGeneratorApp {
         this.passwordBuilder = new PasswordBuilderBySets();
         this.setLength = new SetLength(document.querySelector('.set-length'));
         this.mainPassword = new Password(document.querySelector('.main-password'),this.passwordBuilder);
-        this.useLower = new UseLower(document.querySelector('.use-lower'));
-        this.useUpper = new UseUpper(document.querySelector('.use-upper'));
-        this.useNumbers = new UseNumbers(document.querySelector('.use-numbers'));
-        this.useSpecial = new UseSpecial(document.querySelector('.use-special'));
+        this.useLower = new UseSetIndicator(document.querySelector('.use-lower'));
+        this.useUpper = new UseSetIndicator(document.querySelector('.use-upper'));
+        this.useNumbers = new UseSetIndicator(document.querySelector('.use-numbers'));
+        this.useSpecial = new UseSetIndicator(document.querySelector('.use-special'));
 
         this.passwordBuilder.setLength(this.defaultLength);
         this.setLength.setLength(this.defaultLength);

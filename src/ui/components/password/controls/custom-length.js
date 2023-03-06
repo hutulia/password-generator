@@ -1,6 +1,6 @@
-import {PasswordGeneratorAppComponent} from "../../password-generator-app.component.js";
+import {PasswordGeneratorApp} from "../../password-generator-app.js";
 
-export class LengthControl {
+export class CustomLength {
     /**
      * @type {Element}
      */
@@ -8,13 +8,13 @@ export class LengthControl {
 
 
     /**
-     * @type {PasswordGeneratorAppComponent}
+     * @type {PasswordGeneratorApp}
      */
     passwordGeneratorUi = null;
 
     /**
      * @param {Element} element
-     * @param {PasswordGeneratorAppComponent} passwordGeneratorUi
+     * @param {PasswordGeneratorApp} passwordGeneratorUi
      */
     constructor(element, passwordGeneratorUi) {
         this.element = element;

@@ -1,6 +1,6 @@
 import {Component} from "../../../lib/component.js";
 
-export class PasswordAsTextView extends Component{
+export class PasswordAsText extends Component{
     /**
      * @param {Element} element
      */

@@ -1,17 +1,17 @@
-export class PredefinedLengthControl {
+export class PredefinedLength {
     /**
      * @type {Element}
      */
     element = null;
 
     /**
-     * @type {PasswordGeneratorAppComponent}
+     * @type {PasswordGeneratorApp}
      */
     passwordGeneratorUi = null;
 
     /**
      * @param {Element} element
-     * @param {PasswordGeneratorAppComponent} passwordGeneratorUi
+     * @param {PasswordGeneratorApp} passwordGeneratorUi
      */
     constructor(element, passwordGeneratorUi) {
         this.element = element;

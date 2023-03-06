@@ -1,8 +1,8 @@
 import {lowerLetters, upperLetters, numbers, specialSymbols} from "./password-builder.service.js";
-import {PasswordBlockComponent} from "../ui/components/password-block/password-block.component.js";
+import {Password} from "../ui/components/password/password.js";
 import {PasswordBuilderBySetsService} from "./password-builder-by-sets.service.js";
 import {SymbolsSetService} from "./symbols-set.service.js";
-import {UseSetIndicatorControl} from "../ui/components/password-block/controls/use-set-indicator.control.js";
+import {UseSet} from "../ui/components/password/controls/use-set.js";
 
 export class PasswordGeneratorService {
     /**
@@ -12,7 +12,7 @@ export class PasswordGeneratorService {
     passwordBuilder = null;
     /**
      *
-     * @type {PasswordBlockComponent}
+     * @type {Password}
      */
     mainPassword = null;
 
@@ -27,25 +27,25 @@ export class PasswordGeneratorService {
 
     /**
      *
-     * @type {UseSetIndicatorControl}
+     * @type {UseSet}
      */
     useLower = null;
 
     /**
      *
-     * @type {UseSetIndicatorControl}
+     * @type {UseSet}
      */
     useUpper = null;
 
     /**
      *
-     * @type {UseSetIndicatorControl}
+     * @type {UseSet}
      */
     useNumbers = null;
 
     /**
      *
-     * @type {UseSetIndicatorControl}
+     * @type {UseSet}
      */
     useSpecial = null;
 
@@ -58,11 +58,11 @@ export class PasswordGeneratorService {
         this.passwordBuilder = new PasswordBuilderBySetsService();
         this.passwordBuilder.setLength(this.defaultLength);
 
-        this.mainPassword = new PasswordBlockComponent(document.querySelector('.main-password'),this.passwordBuilder);
-        this.useLower = new UseSetIndicatorControl(document.querySelector('.use-lower'));
-        this.useUpper = new UseSetIndicatorControl(document.querySelector('.use-upper'));
-        this.useNumbers = new UseSetIndicatorControl(document.querySelector('.use-numbers'));
-        this.useSpecial = new UseSetIndicatorControl(document.querySelector('.use-special'));
+        this.mainPassword = new Password(document.querySelector('.main-password'),this.passwordBuilder);
+        this.useLower = new UseSet(document.querySelector('.use-lower'));
+        this.useUpper = new UseSet(document.querySelector('.use-upper'));
+        this.useNumbers = new UseSet(document.querySelector('.use-numbers'));
+        this.useSpecial = new UseSet(document.querySelector('.use-special'));
 
 
         if(this.useLowerByDefault){

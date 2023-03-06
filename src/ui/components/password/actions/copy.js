@@ -1,6 +1,5 @@
-import {Password} from "../password.js";
-
 import {Component} from "../../../lib/component.js";
+import {Password} from "../password.js";
 
 export class Copy extends Component{
     /**

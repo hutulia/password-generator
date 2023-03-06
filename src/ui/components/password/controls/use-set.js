@@ -1,12 +1,17 @@
-export class UseSet {
-    /**
-     *
-     * @type {Element}
-     */
-    element = null;
+import {Component} from "../../../lib/component.js";
 
-    constructor(element) {
-        this.element = element;
+export class UseSet extends Component{
+
+    activatedCallback = () => {};
+    deactivatedCallback = () => {};
+
+    constructor(element, activeByDefault = false, activatedCallback = ()=>{}, deactivatedCallback = ()=>{}, ) {
+        super(element);
+        if(activeByDefault){
+            this.markActive();
+        }
+        this.activatedCallback = activatedCallback;
+        this.deactivatedCallback = deactivatedCallback;
         this.element.addEventListener('click',()=>{
             this.toggle();
             this.element.dispatchEvent(new Event('changed'));
@@ -19,10 +24,12 @@ export class UseSet {
 
     markActive(){
         this.element.classList.add('active');
+        this.activatedCallback();
     }
 
     markInactive(){
         this.element.classList.remove('active');
+        this.deactivatedCallback();
     }
 
     active(){

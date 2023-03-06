@@ -32,24 +32,22 @@ export class Password extends Component{
     constructor(element, passwordBuilder) {
         super(element);
         this.passwordBuilder = passwordBuilder;
-        this.passwordAsText = new PasswordAsText(this.element.querySelector('.password-as-text'));
-
-        this.renewButton = new Renew(this.element.querySelector('.renew'), this, this.passwordBuilder, this.passwordAsText);
-
-        this.copyBtn = new Copy(this.element.querySelector('.copy'), this);
+        this.passwordAsText = new PasswordAsText(this.element.querySelector('.password-as-text'),this);
+        this.copyButton = new Copy(this.element.querySelector('.copy'), this);
+        this.renewButton = new Renew(this.element.querySelector('.renew'), this);
     }
 
     setPassword(password){
-        this.passwordAsText.setPassword(password);
+        this.password = password;
         this.element.dispatchEvent(new CustomEvent(PasswordEvents.UPDATED));
     }
 
     getPassword(){
-        return this.passwordAsText.getPasswordText();
+        return this.password;
     }
 
     renew(){
-        this.passwordAsText.setPassword(this.passwordBuilder.build());
+        this.setPassword(this.passwordBuilder.build());
     }
 
     copy(){

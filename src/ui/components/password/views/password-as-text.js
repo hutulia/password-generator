@@ -1,11 +1,21 @@
 import {Component} from "../../../lib/component.js";
+import{Password} from "../password.js";
+import {PasswordEvents} from "../constants.js";
 
 export class PasswordAsText extends Component{
     /**
-     * @param {Element} element
+     * @param {Password} password
      */
-    constructor(element) {
+    password = null;
+
+    /**
+     * @param {Element} element
+     * @param {Password} password
+     */
+    constructor(element, password) {
         super(element);
+        this.password = password;
+        this.password.getElement().addEventListener(PasswordEvents.UPDATED,()=>this.setPassword(this.password.getPassword()));
     }
 
     /**
@@ -13,9 +23,5 @@ export class PasswordAsText extends Component{
      */
     setPassword(password){
         this.element.innerHTML = password;
-    }
-
-    getPasswordText(){
-        return this.element.innerHTML;
     }
 }

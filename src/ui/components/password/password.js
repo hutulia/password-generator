@@ -4,6 +4,7 @@ import {Renew} from "./actions/renew.js";
 import {Copy} from "./actions/copy.js";
 import {Component} from "../../lib/component.js";
 import {PasswordEvents} from "./constants.js";
+import CopyTextToClipboardService from "../../../services/copy-text-to-clipboard.service.js";
 
 export class Password extends Component{
     password = '';
@@ -21,6 +22,11 @@ export class Password extends Component{
     /**
      * @type {Copy}
      */
+    copyButton = null;
+
+    /**
+     * @type {Renew}
+     */
     renewButton = null;
 
     constructor(element, passwordBuilder) {
@@ -28,15 +34,14 @@ export class Password extends Component{
         this.passwordBuilder = passwordBuilder;
         this.passwordAsText = new PasswordAsText(this.element.querySelector('.password-as-text'));
 
-        this.renewButton = new Renew(this.element.querySelector('.renew'), this.passwordBuilder, this.passwordAsText);
+        this.renewButton = new Renew(this.element.querySelector('.renew'), this, this.passwordBuilder, this.passwordAsText);
 
-        this.children.copyBtn = new Copy(this.element.querySelector('.copy'), this);
+        this.copyBtn = new Copy(this.element.querySelector('.copy'), this);
     }
 
     setPassword(password){
-        const passwordUpdatedEvent = new CustomEvent(PasswordEvents.UPDATED,{detail:{newPassword: password}});
-        this.element.dispatchEvent(passwordUpdatedEvent);
         this.passwordAsText.setPassword(password);
+        this.element.dispatchEvent(new CustomEvent(PasswordEvents.UPDATED));
     }
 
     getPassword(){
@@ -45,5 +50,10 @@ export class Password extends Component{
 
     renew(){
         this.passwordAsText.setPassword(this.passwordBuilder.build());
+    }
+
+    copy(){
+        CopyTextToClipboardService.copy(this.getPassword());
+        this.element.dispatchEvent(new CustomEvent(PasswordEvents.COPIED));
     }
 }

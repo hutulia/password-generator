@@ -1,4 +1,3 @@
-import {PasswordAsText} from "../views/password-as-text.js";
 import CopyTextToClipboardService from "../../../../services/copy-text-to-clipboard.service.js";
 import {Password} from "../password.js";
 
@@ -32,10 +31,8 @@ export class Copy extends Component{
     }
 
     copy() {
-        CopyTextToClipboardService.copy(this.password.getPassword());
+        this.password.copy();
         this.element.innerHTML = this.copiedSymbol;
-        setTimeout(() => {
-            this.element.innerHTML = this.toCopySymbol
-        }, 500);
+        setTimeout(() => this.element.innerHTML = this.toCopySymbol, 500);
     }
 }

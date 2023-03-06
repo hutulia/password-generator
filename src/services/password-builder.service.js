@@ -4,6 +4,8 @@ export const numbers = ['1','2','3','4'];
 export const specialSymbols = ['!','@','#','$','-','_'];
 
 export class PasswordBuilderService {
+    password = '';
+
     symbolsToUse = [];
 
     symbolsToNotUse = [];
@@ -56,7 +58,12 @@ export class PasswordBuilderService {
     }
 
     build(){
-        if(this.length < 1 || !this.symbolsToUse.length){
+        //console.log('START BUILD PASSWORD');
+        this.password = this.calcPassword();
+    }
+
+    calcPassword(){
+         if(this.length < 1 || !this.symbolsToUse.length){
             return '';
         }
 
@@ -68,6 +75,10 @@ export class PasswordBuilderService {
         }
 
         return password;
+    }
+
+    getPassword(){
+        return this.password;
     }
 
     /**

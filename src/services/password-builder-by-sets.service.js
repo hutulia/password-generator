@@ -5,7 +5,6 @@ export class PasswordBuilderBySetsService extends PasswordBuilderService{
 
     constructor() {
         super();
-
     }
 
     reset() {
@@ -25,7 +24,7 @@ export class PasswordBuilderBySetsService extends PasswordBuilderService{
         }
     }
 
-    build(){
+    calcPassword(){
         if(!this.setsToUse.length || this.length < 1){
             return '';
         }
@@ -56,7 +55,7 @@ export class PasswordBuilderBySetsService extends PasswordBuilderService{
 
                     let forcedSymbol = set.getRandomSymbol();
                     password[indexToForce] = forcedSymbol;
-                    console.log(set.name,indexToForce+1,forcedSymbol);
+                    //console.log(set.name,indexToForce+1,forcedSymbol);
                 });
             }
         }

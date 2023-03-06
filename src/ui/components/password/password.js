@@ -17,16 +17,9 @@ import {PasswordGeneratorService} from "../../../services/password-generator.ser
 import {SymbolsSetService} from "../../../services/symbols-set.service.js";
 
 export class Password extends Component{
-    password = '';
-
     length = 8;
 
     customLength = null;
-
-    /**
-     * @type {UseSet}
-     */
-    useLowerComponent = null;
 
     /**
      * @type {PasswordAsText}
@@ -48,32 +41,30 @@ export class Password extends Component{
      */
     renewButton = null;
 
-
     useLowerByDefault = true;
+
     useUpperByDefault = true;
+
     useNumbersByDefault = true;
+
     useSpecialByDefault = true;
 
     /**
-     *
      * @type {UseSet}
      */
     useLower = null;
 
     /**
-     *
      * @type {UseSet}
      */
     useUpper = null;
 
     /**
-     *
      * @type {UseSet}
      */
     useNumbers = null;
 
     /**
-     *
      * @type {UseSet}
      */
     useSpecial = null;
@@ -142,7 +133,7 @@ export class Password extends Component{
             ()=>this.doNotUseSpecialSymbolSet()
         );
 
-        this.setLength(this.length);
+        this.passwordBuilder.setLength(this.length);
         this.renew();
     }
     
@@ -186,17 +177,13 @@ export class Password extends Component{
         this.renew();
     }
 
-    setPassword(password){
-        this.password = password;
-        this.element.dispatchEvent(new CustomEvent(PasswordEvents.UPDATED));
-    }
-
     getPassword(){
-        return this.password;
+        return this.passwordBuilder.getPassword();
     }
 
     renew(){
-        this.setPassword(this.passwordBuilder.build());
+        this.passwordBuilder.build();
+        this.element.dispatchEvent(new CustomEvent(PasswordEvents.UPDATED));
     }
 
     copy(){

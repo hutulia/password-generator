@@ -1,4 +1,3 @@
-import CopyTextToClipboardService from "../../../../services/copy-text-to-clipboard.service.js";
 import {Password} from "../password.js";
 
 import {Component} from "../../../lib/component.js";

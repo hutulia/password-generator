@@ -16,6 +16,6 @@ export class CustomLength extends Component{
         super(element);
         this.password = password;
         this.element.addEventListener('change',()=>{this.password.setLength(this.element.value)});
-        this.password.getElement().addEventListener(PasswordEvents.UPDATED,()=>{this.element.value = this.password.getPassword().length});
+        this.password.getElement().addEventListener(PasswordEvents.UPDATED,()=>{this.element.value = this.password.getLength()});
     }
 }

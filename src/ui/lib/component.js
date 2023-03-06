@@ -17,10 +17,10 @@ export class Component {
     /**
      * @param {Element} element
      */
-    constructor(element, parent = null, children = {}) {
+    constructor(element, parentComponent = null, childrenComponents = {}) {
         this.element = element;
-        this.parent = parent;
-        this.children = children;
+        this.parentComponent = parentComponent;
+        this.childrenComponents = childrenComponents;
     }
 
     getElement(){

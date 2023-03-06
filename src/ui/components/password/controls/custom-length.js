@@ -1,36 +1,21 @@
-import {PasswordGeneratorApp} from "../../password-generator-app.js";
+import {Component} from "../../../lib/component.js";
+import {Password} from "../password.js";
+import {PasswordEvents} from "../constants.js";
 
-export class CustomLength {
+export class CustomLength extends Component{
     /**
-     * @type {Element}
+     * @type {Password}
      */
-    element = null;
-
-
-    /**
-     * @type {PasswordGeneratorApp}
-     */
-    passwordGeneratorUi = null;
+    password = null;
 
     /**
      * @param {Element} element
-     * @param {PasswordGeneratorApp} passwordGeneratorUi
+     * @param {Password} password
      */
-    constructor(element, passwordGeneratorUi) {
-        this.element = element;
-        this.passwordGeneratorUi = passwordGeneratorUi;
-        this.setLength(this.passwordGeneratorUi.passwordGenerator.defaultLength);
-        this.element.addEventListener('change',()=>{
-            this.passwordGeneratorUi.passwordGenerator.passwordBuilder.setLength(this.element.value);
-            this.passwordGeneratorUi.passwordGenerator.mainPassword.setPassword(this.passwordGeneratorUi.passwordGenerator.passwordBuilder.build());
-        });
-    }
-
-    setLength(length){
-        this.element.value = length;
-    }
-
-    getElement(){
-        return this.element;
+    constructor(element, password) {
+        super(element);
+        this.password = password;
+        this.element.addEventListener('change',()=>{this.password.setLength(this.element.value)});
+        this.password.getElement().addEventListener(PasswordEvents.UPDATED,()=>{this.element.value = this.password.getPassword().length});
     }
 }

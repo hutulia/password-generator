@@ -5,9 +5,12 @@ import {Copy} from "./actions/copy.js";
 import {Component} from "../../lib/component.js";
 import {PasswordEvents} from "./constants.js";
 import CopyTextToClipboardService from "../../../services/copy-text-to-clipboard.service.js";
+import {CustomLength} from "./controls/custom-length.js";
 
 export class Password extends Component{
     password = '';
+
+    customLength = null;
 
     /**
      * @type {PasswordAsText}
@@ -35,6 +38,9 @@ export class Password extends Component{
         this.passwordAsText = new PasswordAsText(this.element.querySelector('.password-as-text'),this);
         this.copyButton = new Copy(this.element.querySelector('.copy'), this);
         this.renewButton = new Renew(this.element.querySelector('.renew'), this);
+        this.customLength = new CustomLength(this.element.querySelector('.custom-length'), this);
+
+        this.renew();
     }
 
     setPassword(password){
@@ -53,5 +59,10 @@ export class Password extends Component{
     copy(){
         CopyTextToClipboardService.copy(this.getPassword());
         this.element.dispatchEvent(new CustomEvent(PasswordEvents.COPIED));
+    }
+
+    setLength(length){
+        this.passwordBuilder.setLength(length);
+        this.renew();
     }
 }

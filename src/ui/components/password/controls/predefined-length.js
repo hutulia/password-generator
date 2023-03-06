@@ -1,27 +1,20 @@
-export class PredefinedLength {
-    /**
-     * @type {Element}
-     */
-    element = null;
+import {Component} from "../../../lib/component.js";
+import {Password} from "../password.js";
 
+export class PredefinedLength extends Component{
     /**
-     * @type {PasswordGeneratorApp}
+     * @type {Password}
      */
-    passwordGeneratorUi = null;
+    password = null;
 
     /**
      * @param {Element} element
-     * @param {PasswordGeneratorApp} passwordGeneratorUi
+     * @param {Password} password
      */
-    constructor(element, passwordGeneratorUi) {
-        this.element = element;
-        this.passwordGeneratorUi = passwordGeneratorUi;
+    constructor(element, password) {
+        super(element);
+        this.password = password;
 
-        this.element.onclick = () => {
-            const value = this.element.innerHTML;
-            this.passwordGeneratorUi.passwordGenerator.passwordBuilder.setLength(value);
-            this.passwordGeneratorUi.controls.length.setLength(value);
-            this.passwordGeneratorUi.passwordGenerator.mainPassword.renew();
-        };
+        this.element.onclick = () => this.password.setLength(this.element.innerHTML);
     }
 }

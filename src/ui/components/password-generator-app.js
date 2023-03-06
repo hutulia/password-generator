@@ -1,5 +1,4 @@
 import {PasswordGeneratorService} from "../../services/password-generator.service.js";
-import {CustomLength} from "./password/controls/custom-length.js";
 import {PredefinedLength} from "./password/controls/predefined-length.js";
 
 export class PasswordGeneratorApp {
@@ -14,7 +13,6 @@ export class PasswordGeneratorApp {
     passwordGenerator = null;
 
     controls = {
-        length: null,
         predefinedLength4: null,
         predefinedLength8: null,
         predefinedLength12: null,
@@ -30,12 +28,11 @@ export class PasswordGeneratorApp {
     constructor(rootElement, passwordGenerator) {
         this.root = rootElement;
         this.passwordGenerator = passwordGenerator;
-        this.controls.length = new CustomLength(this.root.querySelector('.set-length'), this);
-        this.controls.predefinedLength4 = new PredefinedLength(this.root.querySelector('.pl4'), this);
-        this.controls.predefinedLength8 = new PredefinedLength(this.root.querySelector('.pl8'), this);
-        this.controls.predefinedLength12 = new PredefinedLength(this.root.querySelector('.pl12'), this);
-        this.controls.predefinedLength16 = new PredefinedLength(this.root.querySelector('.pl16'), this);
-        this.controls.predefinedLength24 = new PredefinedLength(this.root.querySelector('.pl24'), this);
-        this.controls.predefinedLength32 = new PredefinedLength(this.root.querySelector('.pl32'), this);
+        this.controls.predefinedLength4 = new PredefinedLength(this.root.querySelector('.pl4'), this.passwordGenerator.mainPassword);
+        this.controls.predefinedLength8 = new PredefinedLength(this.root.querySelector('.pl8'), this.passwordGenerator.mainPassword);
+        this.controls.predefinedLength12 = new PredefinedLength(this.root.querySelector('.pl12'), this.passwordGenerator.mainPassword);
+        this.controls.predefinedLength16 = new PredefinedLength(this.root.querySelector('.pl16'), this.passwordGenerator.mainPassword);
+        this.controls.predefinedLength24 = new PredefinedLength(this.root.querySelector('.pl24'), this.passwordGenerator.mainPassword);
+        this.controls.predefinedLength32 = new PredefinedLength(this.root.querySelector('.pl32'), this.passwordGenerator.mainPassword);
     }
 }

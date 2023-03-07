@@ -1,4 +1,4 @@
-import {lowerLetters, upperLetters, numbers, specialSymbols} from "../../src/password-builder/symbols-lists.js";
+import {lowerLetters, upperLetters, numbers, specialSymbols} from "../../src/symbols-set/symbols-lists.js";
 import {PasswordAsText} from "./views/password-as-text.js";
 import {Renew} from "./actions/renew.js";
 import {Copy} from "./actions/copy.js";
@@ -8,8 +8,9 @@ import CopyTextToClipboardService from "../../src/copy-text-to-clipboard.service
 import {CustomLength} from "./controls/custom-length.js";
 import {PredefinedLength} from "./controls/predefined-length.js";
 import {UseSet} from "./controls/use-set.js";
-import {SymbolsSetService} from "../../src/symbols-set.service.js";
+import {SymbolsSetService} from "../../src/symbols-set/symbols-set.service.js";
 import {BasePasswordBuilderService} from "../../src/password-builder/base-password-builder.service.js";
+import {SymbolsSetRegistry} from "../../src/symbols-set/symbols-set-registry.js";
 
 export class Password extends Component {
     length = 8;
@@ -25,6 +26,11 @@ export class Password extends Component {
      * @type {BasePasswordBuilderService}
      */
     passwordBuilder = null;
+
+    /**
+     * @type {SymbolsSetRegistry}
+     */
+    symbolsSetRegistry = null;
 
     /**
      * @type {Copy}
@@ -69,9 +75,11 @@ export class Password extends Component {
     setOfNumbers = new SymbolsSetService('numbers-set', numbers);
     setOfSpecial = new SymbolsSetService('special-set', specialSymbols);
 
-    constructor(element, passwordBuilder) {
+    constructor(element, passwordBuilder, symbolsSetRegitry) {
         super(element);
         this.passwordBuilder = passwordBuilder;
+        this.symbolsSetRegitry = symbolsSetRegitry;
+
         this.passwordAsTextComponent = new PasswordAsText(this.element.querySelector('.password-as-text'), this);
         this.copyButton = new Copy(this.element.querySelector('.copy'), this);
         this.renewButton = new Renew(this.element.querySelector('.renew'), this);

@@ -3,7 +3,7 @@ import {
     numbers,
     PasswordBuilderService, specialSymbols,
     upperLetters
-} from "../../../services/password-builder.service.js";
+} from "../../../services/password-builder/password-builder.service.js";
 import {PasswordAsText} from "./views/password-as-text.js";
 import {Renew} from "./actions/renew.js";
 import {Copy} from "./actions/copy.js";
@@ -13,7 +13,6 @@ import CopyTextToClipboardService from "../../../services/copy-text-to-clipboard
 import {CustomLength} from "./controls/custom-length.js";
 import {PredefinedLength} from "./controls/predefined-length.js";
 import {UseSet} from "./controls/use-set.js";
-import {PasswordGeneratorService} from "../../../services/password-generator.service.js";
 import {SymbolsSetService} from "../../../services/symbols-set.service.js";
 
 export class Password extends Component{

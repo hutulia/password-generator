@@ -1,4 +1,4 @@
-import {Component} from "../../../lib/component.js";
+import {Component} from "../../../src/ui-framework/component.js";
 
 export class UseSet extends Component{
 

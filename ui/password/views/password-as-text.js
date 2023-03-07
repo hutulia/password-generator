@@ -1,6 +1,6 @@
-import {Component} from "../../../lib/component.js";
+import {Component} from "../../../src/ui-framework/component.js";
 import{Password} from "../password.js";
-import {PasswordEvents} from "../constants.js";
+import {PasswordEvents} from "../../../src/password-generator-app/password-events.js";
 
 export class PasswordAsText extends Component{
     /**

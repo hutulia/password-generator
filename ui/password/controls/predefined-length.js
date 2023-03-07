@@ -1,4 +1,4 @@
-import {Component} from "../../../lib/component.js";
+import {Component} from "../../../src/ui-framework/component.js";
 import {Password} from "../password.js";
 
 export class PredefinedLength extends Component{

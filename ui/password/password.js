@@ -1,15 +1,15 @@
-import {lowerLetters, upperLetters, numbers, specialSymbols} from "../../../modules/password-builder/symbols-lists.js";
+import {lowerLetters, upperLetters, numbers, specialSymbols} from "../../src/password-builder/symbols-lists.js";
 import {PasswordAsText} from "./views/password-as-text.js";
 import {Renew} from "./actions/renew.js";
 import {Copy} from "./actions/copy.js";
-import {Component} from "../../lib/component.js";
-import {PasswordEvents} from "./constants.js";
-import CopyTextToClipboardService from "../../../modules/copy-text-to-clipboard.service.js";
+import {Component} from "../../src/ui-framework/component.js";
+import {PasswordEvents} from "../../src/password-generator-app/password-events.js";
+import CopyTextToClipboardService from "../../src/copy-text-to-clipboard.service.js";
 import {CustomLength} from "./controls/custom-length.js";
 import {PredefinedLength} from "./controls/predefined-length.js";
 import {UseSet} from "./controls/use-set.js";
-import {SymbolsSetService} from "../../../modules/symbols-set.service.js";
-import {BasePasswordBuilderService} from "../../../modules/password-builder/base-password-builder.service.js";
+import {SymbolsSetService} from "../../src/symbols-set.service.js";
+import {BasePasswordBuilderService} from "../../src/password-builder/base-password-builder.service.js";
 
 export class Password extends Component {
     length = 8;

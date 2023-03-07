@@ -1,13 +1,26 @@
 import {Component} from "../../../src/ui-framework/component.js";
+import {Password} from "../password.js";
+import {SymbolsSetService} from "../../../src/symbols-set/symbols-set.service.js";
 
-export class UseSet extends Component{
+export class SymbolsSetUsage extends Component{
+    /**
+     * @type {SymbolsSetService}
+     */
+    symbolsSet = null;
+
+    /**
+     * @type {Password}
+     */
+    password = null;
 
     activatedCallback = () => {};
     deactivatedCallback = () => {};
 
-    constructor(element, activeByDefault = false, activatedCallback = ()=>{}, deactivatedCallback = ()=>{}, ) {
+    constructor(element, symbolsSet, password, activeByDefault = false, activatedCallback = ()=>{}, deactivatedCallback = ()=>{}, ) {
         super(element);
-        if(activeByDefault){
+        this.symbolsSet = symbolsSet;
+        this.password = password;
+        if(this.password.passwordBuilder.uses(this.symbolsSet)){
             this.markActive();
         }
         this.activatedCallback = activatedCallback;

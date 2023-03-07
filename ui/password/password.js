@@ -7,10 +7,10 @@ import {PasswordEvents} from "../../src/password-generator-app/password-events.j
 import CopyTextToClipboardService from "../../src/copy-text-to-clipboard.service.js";
 import {CustomLength} from "./controls/custom-length.js";
 import {PredefinedLength} from "./controls/predefined-length.js";
-import {UseSet} from "./controls/use-set.js";
+import {SymbolsSetUsage} from "./controls/symbols-set-usage.js";
 import {SymbolsSetService} from "../../src/symbols-set/symbols-set.service.js";
-import {BasePasswordBuilderService} from "../../src/password-builder/base-password-builder.service.js";
 import {SymbolsSetRegistry} from "../../src/symbols-set/symbols-set-registry.js";
+import {PasswordBuilderBySetsService} from "../../src/password-builder/password-builder-by-sets.service.js";
 
 export class Password extends Component {
     length = 8;
@@ -23,7 +23,7 @@ export class Password extends Component {
     passwordAsTextComponent = null;
 
     /**
-     * @type {BasePasswordBuilderService}
+     * @type {PasswordBuilderBySetsService}
      */
     passwordBuilder = null;
 
@@ -51,22 +51,22 @@ export class Password extends Component {
     useSpecialByDefault = true;
 
     /**
-     * @type {UseSet}
+     * @type {SymbolsSetUsage}
      */
     useLower = null;
 
     /**
-     * @type {UseSet}
+     * @type {SymbolsSetUsage}
      */
     useUpper = null;
 
     /**
-     * @type {UseSet}
+     * @type {SymbolsSetUsage}
      */
     useNumbers = null;
 
     /**
-     * @type {UseSet}
+     * @type {SymbolsSetUsage}
      */
     useSpecial = null;
 
@@ -77,8 +77,12 @@ export class Password extends Component {
 
     constructor(element, passwordBuilder, symbolsSetRegitry) {
         super(element);
+        this.symbolsSetRegistry = symbolsSetRegitry;
         this.passwordBuilder = passwordBuilder;
-        this.symbolsSetRegitry = symbolsSetRegitry;
+        this.passwordBuilder.useSymbolsSet(this.symbolsSetRegistry.findByName('lower-letters'));
+        this.passwordBuilder.useSymbolsSet(this.symbolsSetRegistry.findByName('upper-letters'));
+        this.passwordBuilder.useSymbolsSet(this.symbolsSetRegistry.findByName('numbers'));
+        this.passwordBuilder.useSymbolsSet(this.symbolsSetRegistry.findByName('special-symbols'));
 
         this.passwordAsTextComponent = new PasswordAsText(this.element.querySelector('.password-as-text'), this);
         this.copyButton = new Copy(this.element.querySelector('.copy'), this);
@@ -92,48 +96,28 @@ export class Password extends Component {
         this.predefinedLength24 = new PredefinedLength(this.element.querySelector('.pl24'), this);
         this.predefinedLength32 = new PredefinedLength(this.element.querySelector('.pl32'), this);
 
-        if (this.useLowerByDefault) {
-            this.useLowerSymbolSet();
-        }
-
-        if (this.useUpperByDefault) {
-            this.useUpperSymbolSet();
-        }
-
-        if (this.useNumbersByDefault) {
-            this.useNumbersSymbolSet();
-        }
-
-        if (this.useSpecialByDefault) {
-            this.useSpecialSymbolSet();
-        }
-
-        this.useLower = new UseSet(
+        this.useLower = new SymbolsSetUsage(
             document.querySelector('.use-lower'),
-            this.useLowerByDefault,
-            () => this.useLowerSymbolSet(),
-            () => this.doNotUseLowerSymbolSet()
+            this.symbolsSetRegistry.findByName('lower-letters'),
+            this,
         );
 
-        this.useUpper = new UseSet(
+        this.useUpper = new SymbolsSetUsage(
             document.querySelector('.use-upper'),
-            this.useUpperByDefault,
-            () => this.useUpperSymbolSet(),
-            () => this.doNotUseUpperSymbolSet()
+            this.symbolsSetRegistry.findByName('upper-letters'),
+            this,
         );
 
-        this.useNumbers = new UseSet(
+        this.useNumbers = new SymbolsSetUsage(
             document.querySelector('.use-numbers'),
-            this.useNumbersByDefault,
-            () => this.useNumbersSymbolSet(),
-            () => this.doNotUseNumbersSymbolSet()
+            this.symbolsSetRegistry.findByName('numbers'),
+            this,
         );
 
-        this.useSpecial = new UseSet(
+        this.useSpecial = new SymbolsSetUsage(
             document.querySelector('.use-special'),
-            this.useSpecialByDefault,
-            () => this.useSpecialSymbolSet(),
-            () => this.doNotUseSpecialSymbolSet()
+            this.symbolsSetRegistry.findByName('special-symbols'),
+            this,
         );
 
         this.passwordBuilder.setLength(this.length);

@@ -4,10 +4,10 @@ import {SymbolsSetService} from "./symbols-set/symbols-set.service.js";
 import {lowerLetters, numbers, specialSymbols, upperLetters} from "./symbols-set/symbols-lists.js";
 import {SymbolsSetRegistry} from "./symbols-set/symbols-set-registry.js";
 
-const setOfLower = new SymbolsSetService('lower-set', lowerLetters);
-const setOfUpper = new SymbolsSetService('upper-set', upperLetters);
-const setOfNumbers = new SymbolsSetService('numbers-set', numbers);
-const setOfSpecial = new SymbolsSetService('special-set', specialSymbols);
+const setOfLower = new SymbolsSetService('lower-letters', lowerLetters);
+const setOfUpper = new SymbolsSetService('upper-letters', upperLetters);
+const setOfNumbers = new SymbolsSetService('numbers', numbers);
+const setOfSpecial = new SymbolsSetService('special-symbols', specialSymbols);
 
 window.symbolsSetRegistry = new SymbolsSetRegistry();
 symbolsSetRegistry.register(setOfLower,setOfUpper,setOfNumbers,setOfSpecial);

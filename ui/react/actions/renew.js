@@ -4,12 +4,12 @@ import CopyTextToClipboardService from "../../../src/copy-text-to-clipboard.serv
 import React from 'react';
 import ReactDOM from 'react-dom';
 export function Renew({password}) {
-    return React.createElement(
-        'button',
-        {
-            onClick: () => password.renew(),
-            className: 'btn',
-        },
-        '🔄'
+    return (
+        <button
+            onClick={() => password.renew()}
+            className={'btn'}
+        >
+            🔄
+        </button>
     );
 }

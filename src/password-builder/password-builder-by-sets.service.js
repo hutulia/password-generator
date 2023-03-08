@@ -33,42 +33,19 @@ export class PasswordBuilderBySetsService extends BasePasswordBuilderService{
             return '';
         }
 
-        let password = [];
+        let password = Array(this.length).fill('');
+        let indexes = password.map((element, index) => index);
 
-        for (let i = 0; i < this.length; i++) {
-            password.push(this.getRandomSet().getRandomSymbol());
-        }
-
-        let indexesCanBeForce = [];
-        password.map((item, index) => {
-            indexesCanBeForce.push(index);
-        });
-
-        if(this.setsToUse.length){
-            while(indexesCanBeForce.length){
-                //this.setsToUse.sort(() => Math.random() - 0.5);
-                this.setsToUse.map(set => {
-                    if(indexesCanBeForce.length < 1){
-                        return;
-                    }
-
-                    indexesCanBeForce = indexesCanBeForce.sort(() => Math.random() - 0.5);
-
-                    let indexToForce = indexesCanBeForce[0];
-                    indexesCanBeForce.splice(0, 1);
-
-                    let forcedSymbol = set.getRandomSymbol();
-                    password[indexToForce] = forcedSymbol;
-                    //console.log(set.name,indexToForce+1,forcedSymbol);
-                });
-            }
+        while(indexes.length > 0){
+            this.setsToUse.map(set => {
+                const indexOfIndexesToUse = 0;
+                indexes = indexes.sort(() => Math.random() - 0.5);
+                password[indexes[indexOfIndexesToUse]] = set.getRandomSymbol();
+                indexes.splice(indexOfIndexesToUse, 1);
+            });
         }
 
         return password.join('');
-    }
-
-    getRandomIndex(arrayInstance){
-        return arrayInstance[Math.floor(Math.random()*arrayInstance.length)];
     }
 
     getRandomSet(){

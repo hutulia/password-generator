@@ -1,20 +1,19 @@
 export class BasePasswordBuilderService {
     password = '';
 
-    defaultLength = 8;
-
-    length = 8;
+    length = 0;
 
     constructor() {
         this.reset()
     }
 
     reset(){
-        this.setLength(this.defaultLength);
+        this.setLength(0);
+        this.password = '';
     }
 
     setLength(length){
-        this.length = length;
+        this.length = Number.parseInt(length);
     }
 
     build(){

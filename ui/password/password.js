@@ -1,8 +1,10 @@
 //import {PasswordAsText} from "./views/password-as-text.js";
 import {PasswordAsText} from "../react/views/password-as-text.js";
-import {Renew} from "./actions/renew.js";
+import {Actions} from "../react/actions/actions.js";
 //import {Copy} from "./actions/copy.js";
 import {Copy} from "../react/actions/copy.js";
+//import {Renew} from "./actions/renew.js";
+import {Renew} from "../react/actions/renew.js";
 import {Component} from "../../src/ui-framework/component.js";
 import {PasswordEvents} from "../../src/password-generator-app/password-events.js";
 import CopyTextToClipboardService from "../../src/copy-text-to-clipboard.service.js";
@@ -11,6 +13,9 @@ import {PredefinedLength} from "./controls/predefined-length.js";
 import {SymbolsSetUsage} from "./controls/symbols-set-usage.js";
 import {SymbolsSetRegistry} from "../../src/symbols-set/symbols-set-registry.js";
 import {PasswordBuilderBySetsService} from "../../src/password-builder/password-builder-by-sets.service.js";
+
+import React from 'react';
+import ReactDOM from 'react-dom';
 
 export class Password extends Component {
     length = 8;
@@ -49,9 +54,20 @@ export class Password extends Component {
 
         ReactDOM.createRoot(this.element.querySelector('.password-as-text')).render(React.createElement(PasswordAsText, {password: this}));
 
-        ReactDOM.createRoot(this.element.querySelector('.action-copy')).render(React.createElement(Copy, {password: this}));
+        // ReactDOM.createRoot(this.element.querySelector('.actions')).render(
+        //     React.createElement(Copy, {password: this}),
+        //     React.createElement(Renew, {password: this}),
+        // );
 
-        this.renewButton = new Renew(this.element.querySelector('.renew'), this);
+        //ReactDOM.createRoot(this.element.querySelector('.actions-wrapper')).render(new Actions({password: this}));
+
+        //ReactDOM.createRoot(this.element.querySelector('.actions-wrapper')).render(new Copy({password: this}));
+
+        ReactDOM.createRoot(this.element.querySelector('.action-copy')).render(React.createElement(Copy, {password: this}));
+        //
+
+        ReactDOM.createRoot(this.element.querySelector('.action-renew')).render(React.createElement(Renew, {password: this}));
+
         this.customLength = new CustomLength(this.element.querySelector('.custom-length'), this);
 
         [4,8,12,16,24,32].map(length => new PredefinedLength(this.element.querySelector('.pl'+length), this));

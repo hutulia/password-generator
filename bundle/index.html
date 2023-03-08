@@ -1,0 +1,32 @@
+<!doctype html><html lang="uk"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><title>Генератор паролів</title><style>html, body{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            max-width: 720px;
+            margin: auto;
+            padding: 1em;
+        }
+        .password-as-text{
+            border: 2px solid lightgrey;
+            background: #f7f7f7;
+            display: block;
+            padding: 0.5em;
+            font-size: 2em;
+            font-family: monospace;
+            min-height: 1em;
+            line-height: 1em;
+        }
+        .btn{
+            padding: 0.25em 0.5em;
+            font-size: 2em;
+            background: lightgrey;
+            cursor: pointer;
+        }
+        .predefined-length{
+            padding: 1em;
+            cursor: pointer;
+        }
+        .btn.active{
+            background-color: darkcyan;
+        }</style><script defer="defer" src="index_bundle.js"></script></head><body><h1>Генератор паролів</h1><div id="app-orig"><div class="password main-password"><p class="password-as-text"></p><div class="actions-wrapper"><p class="actions"><span class="action-copy"></span> <span class="action-renew"></span></p></div><p><button class="btn set-usage" data-name="lower">abc</button> <button class="btn set-usage" data-name="upper">ABC</button> <button class="btn set-usage" data-name="numbers">123</button> <button class="btn set-usage" data-name="special">!@#</button> <label><input class="custom-length" type="number" min="0" max="32" value="" size="3"></label> <button class="predefined-length pl4">4</button> <button class="predefined-length pl8">8</button> <button class="predefined-length pl12">12</button> <button class="predefined-length pl16">16</button> <button class="predefined-length pl24">24</button> <button class="predefined-length pl32">32</button></p></div></div><div id="like-button-root"></div><div id="app"></div></body></html>

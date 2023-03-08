@@ -43,21 +43,26 @@
 <body>
 <h1>Генератор паролів</h1>
 
-<div id="app">
+<div id="app-orig">
     <div class="password main-password">
         <p class="password-as-text"></p>
 
-        <p class="actions">
-            <span class="action-copy"></span>
-            <button class="btn renew">🔄</button>
-        </p>
+        <div class="actions-wrapper">
+            <p class="actions">
+                <span class="action-copy"></span>
+                <span class="action-renew"></span>
+            </p>
+        </div>
+
 
         <p>
             <button class="btn set-usage" data-name="lower">abc</button>
             <button class="btn set-usage" data-name="upper">ABC</button>
             <button class="btn set-usage" data-name="numbers">123</button>
             <button class="btn set-usage" data-name="special">!@#</button>
-            <input class="custom-length" type="number" min="0" max="32" value="" size="3">
+            <label>
+                <input class="custom-length" type="number" min="0" max="32" value="" size="3">
+            </label>
             <button class="predefined-length pl4">4</button>
             <button class="predefined-length pl8">8</button>
             <button class="predefined-length pl12">12</button>
@@ -70,14 +75,14 @@
 
 <div id="like-button-root"></div>
 
-<script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
-<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+<div id="app"></div>
 
-<script type="module" src="./app.js"></script>
-<script type="module" src="./app.js"></script>
+<!--<script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>-->
+<!--<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>-->
+
 <!--<script type="module" src="dist/bundle.js?v=5"></script>-->
-
-<script type="module" src="src/index.js"></script>
+<!--<script type="module" src="main.js"></script>-->
+<!--<script src='index_bundle.js'></script>-->
 
 </body>
 </html>

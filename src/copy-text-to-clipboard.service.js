@@ -4,7 +4,7 @@ export default class CopyTextToClipboardService {
         input.value = text;
         input.select();
         input.setSelectionRange(0, 99999); // For mobile devices
-        navigator.clipboard.writeText(input.value);
+        window.navigator.clipboard.writeText(input.value);
         input.remove();
     }
 }

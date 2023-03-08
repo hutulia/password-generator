@@ -11,7 +11,10 @@
   "scripts": {
     "build_old": "webpack --config webpack.config.js",
     "start": "webpack-dev-server --mode development --open --hot",
-    "build": "webpack --mode production"
+
+    "comment": "update version at index.html",
+    "build": "webpack --mode production",
+    "start:dev": "serve . && webpack"
   },
   "dependencies": {
     "@babel/cli": "^7.21.0",

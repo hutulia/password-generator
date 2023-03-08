@@ -25,4 +25,13 @@ export function Copy({password}) {
         },
         currentSymbol
     );
+
+    return React.createElement(
+        <button
+            onClick = {copy}
+            className= 'btn'
+        >
+            {currentSymbol}
+        </button>
+    );
 }

@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
+    watch: true,
     entry: './src/main.js',
     output: {
         path: path.join(__dirname, '/bundle'),

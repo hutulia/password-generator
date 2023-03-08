@@ -14,3 +14,7 @@ symbolsSetRegistry.register(
 
 window.mainPassword = new Password(document.querySelector('.main-password'), new PasswordBuilderBySetsService(),window.symbolsSetRegistry);
 
+import {LikeButton} from "../ui/react/like-button.js";
+const rootNode = document.getElementById('like-button-root');
+const root = ReactDOM.createRoot(rootNode);
+root.render(React.createElement(LikeButton));

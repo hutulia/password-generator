@@ -17,19 +17,10 @@ export function Copy({password}) {
         },500);
     };
 
-    return React.createElement(
-        'button',
-        {
-            onClick: copy,
-            className: 'btn',
-        },
-        currentSymbol
-    );
-
-    return React.createElement(
+    return (
         <button
             onClick = {copy}
-            className= 'btn'
+            className= {'btn'}
         >
             {currentSymbol}
         </button>

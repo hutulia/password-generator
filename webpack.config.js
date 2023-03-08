@@ -5,8 +5,8 @@ module.exports = {
     watch: true,
     entry: './src/main.js',
     output: {
-        path: path.join(__dirname, '/bundle'),
-        filename: 'index_bundle.js'
+        path: path.join(__dirname, '/dist'),
+        filename: 'bundle.js'
     },
     module: {
         rules: [
@@ -19,9 +19,4 @@ module.exports = {
             }
         ]
     },
-    plugins:[
-        new HtmlWebpackPlugin({
-            template: './src/index.html'
-        })
-    ]
 }

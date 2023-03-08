@@ -1,7 +1,8 @@
 //import {PasswordAsText} from "./views/password-as-text.js";
 import {PasswordAsText} from "../react/views/password-as-text.js";
 import {Renew} from "./actions/renew.js";
-import {Copy} from "./actions/copy.js";
+//import {Copy} from "./actions/copy.js";
+import {Copy} from "../react/actions/copy.js";
 import {Component} from "../../src/ui-framework/component.js";
 import {PasswordEvents} from "../../src/password-generator-app/password-events.js";
 import CopyTextToClipboardService from "../../src/copy-text-to-clipboard.service.js";
@@ -10,7 +11,6 @@ import {PredefinedLength} from "./controls/predefined-length.js";
 import {SymbolsSetUsage} from "./controls/symbols-set-usage.js";
 import {SymbolsSetRegistry} from "../../src/symbols-set/symbols-set-registry.js";
 import {PasswordBuilderBySetsService} from "../../src/password-builder/password-builder-by-sets.service.js";
-
 
 export class Password extends Component {
     length = 8;
@@ -47,11 +47,10 @@ export class Password extends Component {
         this.symbolsSetRegistry = symbolsSetRegitry;
         this.passwordBuilder = passwordBuilder;
 
-        const rootNode = this.element.querySelector('.password-as-text');
-        const root = ReactDOM.createRoot(rootNode);
-        root.render(React.createElement(PasswordAsText, {password: this}));
+        ReactDOM.createRoot(this.element.querySelector('.password-as-text')).render(React.createElement(PasswordAsText, {password: this}));
 
-        this.copyButton = new Copy(this.element.querySelector('.copy'), this);
+        ReactDOM.createRoot(this.element.querySelector('.action-copy')).render(React.createElement(Copy, {password: this}));
+
         this.renewButton = new Renew(this.element.querySelector('.renew'), this);
         this.customLength = new CustomLength(this.element.querySelector('.custom-length'), this);
 

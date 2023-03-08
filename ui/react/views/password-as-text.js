@@ -5,7 +5,9 @@ import {PasswordEvents} from "../../../src/password-generator-app/password-event
 export function PasswordAsText({password}) {
     const [passwordAsText, setPasswordAsText] = React.useState(password.getPassword());
 
-    password.getElement().addEventListener(PasswordEvents.UPDATED,()=>setPasswordAsText(password.getPassword()));
+    React.useEffect(() => {
+        password.getElement().addEventListener(PasswordEvents.UPDATED,()=>setPasswordAsText(password.getPassword()));
+    },[]);
 
     return passwordAsText;
 }

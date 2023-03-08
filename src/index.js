@@ -13,3 +13,4 @@ symbolsSetRegistry.register(
 );
 
 window.mainPassword = new Password(document.querySelector('.main-password'), new PasswordBuilderBySetsService(),window.symbolsSetRegistry);
+

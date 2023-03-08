@@ -13,21 +13,18 @@ export class SymbolsSetUsage extends Component{
      */
     password = null;
 
-    activatedCallback = () => {};
-    deactivatedCallback = () => {};
-
-    constructor(element, symbolsSet, password, activeByDefault = false, activatedCallback = ()=>{}, deactivatedCallback = ()=>{}, ) {
+    constructor(element, symbolsSet, password) {
         super(element);
         this.symbolsSet = symbolsSet;
         this.password = password;
+
         if(this.password.passwordBuilder.uses(this.symbolsSet)){
             this.markActive();
         }
-        this.activatedCallback = activatedCallback;
-        this.deactivatedCallback = deactivatedCallback;
+
         this.element.addEventListener('click',()=>{
             this.toggle();
-            this.element.dispatchEvent(new Event('changed'));
+            this.handleState();
         });
     }
 
@@ -37,16 +34,32 @@ export class SymbolsSetUsage extends Component{
 
     markActive(){
         this.element.classList.add('active');
-        this.activatedCallback();
     }
 
     markInactive(){
         this.element.classList.remove('active');
-        this.deactivatedCallback();
+    }
+
+    activate(){
+        this.password.passwordBuilder.useSymbolsSet(this.symbolsSet);
+        this.password.renew();
+    }
+
+    deactivate(){
+        this.password.passwordBuilder.doNotUseSymbolsSet(this.symbolsSet);
+        this.password.renew();
     }
 
     active(){
         return this.element.classList.contains('active');
+    }
+
+    handleState(){
+        if(this.active()){
+            this.activate();
+        }else{
+            this.deactivate();
+        }
     }
 
     toggle(){
@@ -55,5 +68,7 @@ export class SymbolsSetUsage extends Component{
         }else{
             this.markInactive();
         }
+
+        this.handleState();
     }
 }

@@ -26,4 +26,8 @@ export class Component {
     getElement(){
         return this.element;
     }
+
+    dispatchEvent(name, detailPropretyValue = {}){
+        this.element.dispatchEvent(name,{detail: detailPropretyValue});
+    }
 }

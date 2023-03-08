@@ -4,12 +4,12 @@ import {SymbolsSetService} from "./symbols-set/symbols-set.service.js";
 import {lowerLetters, numbers, specialSymbols, upperLetters} from "./symbols-set/symbols-lists.js";
 import {SymbolsSetRegistry} from "./symbols-set/symbols-set-registry.js";
 
-const setOfLower = new SymbolsSetService('lower-letters', lowerLetters);
-const setOfUpper = new SymbolsSetService('upper-letters', upperLetters);
-const setOfNumbers = new SymbolsSetService('numbers', numbers);
-const setOfSpecial = new SymbolsSetService('special-symbols', specialSymbols);
-
 window.symbolsSetRegistry = new SymbolsSetRegistry();
-symbolsSetRegistry.register(setOfLower,setOfUpper,setOfNumbers,setOfSpecial);
+symbolsSetRegistry.register(
+    new SymbolsSetService('lower', lowerLetters),
+    new SymbolsSetService('upper', upperLetters),
+    new SymbolsSetService('numbers', numbers),
+    new SymbolsSetService('special', specialSymbols),
+);
 
 window.mainPassword = new Password(document.querySelector('.main-password'), new PasswordBuilderBySetsService(),window.symbolsSetRegistry);

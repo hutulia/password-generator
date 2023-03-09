@@ -26,7 +26,7 @@ export function PasswordComponent({password}) {
 
             <CustomLength password={password} />
 
-            <div className="predefined-length">
+            <div className="lengths">
                 <PredefinedLength password={password} length="4" />
                 <PredefinedLength password={password} length="8" />
                 <PredefinedLength password={password} length="12" />

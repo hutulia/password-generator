@@ -5,7 +5,6 @@ import {PasswordEvents} from "../../src/password-generator-app/password-events.j
 import {CustomLength} from "../react/controls/custom-length";
 import {SymbolsSetRegistry} from "../../src/symbols-set/symbols-set-registry.js";
 import {PasswordBuilderBySetsService} from "../../src/password-builder/password-builder-by-sets.service.js";
-import {PredefinedLengthControls} from "../react/controls/predefined-length-controls";
 import {PasswordComponent} from "../react/password-component";
 
 export class Password extends Component {
@@ -30,9 +29,6 @@ export class Password extends Component {
         this.renew();
 
         ReactDOM.createRoot(document.querySelector('.p')).render(React.createElement(PasswordComponent, {password: this}));
-
-        ReactDOM.createRoot(this.element.querySelector('.predefined-length-controls')).render(React.createElement(PredefinedLengthControls, {password: this}));
-
     }
 
     getPassword() {

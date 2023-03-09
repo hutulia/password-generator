@@ -8,7 +8,7 @@ export function CustomLength({passwordBuilder}) {
     const [length, setLength] = React.useState(passwordBuilder.getLength());
 
     const change = (e) => {
-        passwordBuilder.setLength(e.target.value);
+        passwordBuilder.setLength(e.target.value).build();
     };
 
     React.useEffect(() => {

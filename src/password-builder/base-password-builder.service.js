@@ -20,7 +20,7 @@ export class BasePasswordBuilderService {
 
     setLength(length){
         this.length = Number.parseInt(length);
-        this.events.emit(PasswordEvents.UPDATED);
+        this.events.emit(PasswordEvents.LENGTH_UPDATED);
     }
 
     getEvents(){
@@ -29,6 +29,7 @@ export class BasePasswordBuilderService {
 
     build(){
         this.password = this.calcPassword();
+        this.events.emit(PasswordEvents.UPDATED);
     }
 
     calcPassword(){

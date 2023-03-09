@@ -10,7 +10,7 @@ import {PredefinedLength} from "./controls/predefined-length";
 
 export function PasswordComponent({password}) {
     return (
-        <>
+        <div className="password main-password">
             <PasswordAsText password={password} />
             <div className="actions">
                 <Copy password = {password} />
@@ -33,6 +33,6 @@ export function PasswordComponent({password}) {
                 <PredefinedLength password={password} length="24" />
                 <PredefinedLength password={password} length="32" />
             </div>
-        </>
+        </div>
     );
 }

@@ -12,7 +12,7 @@ export function CustomLength({password}) {
     };
 
     React.useEffect(() => {
-        password.passwordBuilder.getEvents().on(PasswordEvents.UPDATED,()=>setLength(password.getLength()));
+        password.passwordBuilder.getEvents().on(PasswordEvents.LENGTH_UPDATED,()=>setLength(password.getLength()));
     },[]);
 
     return (

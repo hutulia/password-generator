@@ -27,7 +27,7 @@ export class Password extends Component {
         this.passwordBuilder.useSymbolsSets(...this.symbolsSetRegistry.getAll());
         this.renew();
 
-        ReactDOM.createRoot(document.querySelector('.p')).render(React.createElement(PasswordComponent, {password: this}));
+        ReactDOM.createRoot(document.querySelector('#app')).render(React.createElement(PasswordComponent, {password: this}));
     }
 
     getPassword() {
@@ -36,7 +36,6 @@ export class Password extends Component {
 
     renew() {
         this.passwordBuilder.build();
-        this.element.dispatchEvent(new CustomEvent(PasswordEvents.UPDATED));
     }
 
     getLength() {
@@ -46,7 +45,6 @@ export class Password extends Component {
     setLength(length) {
         this.length = length;
         this.passwordBuilder.setLength(this.length);
-
         this.renew();
     }
 }

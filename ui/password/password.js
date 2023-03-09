@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import {Component} from "../../src/ui-framework/component.js";
 import {PasswordEvents} from "../../src/password-generator-app/password-events.js";
-import {CustomLength} from "../react/controls/custom-length";
 import {SymbolsSetRegistry} from "../../src/symbols-set/symbols-set-registry.js";
 import {PasswordBuilderBySetsService} from "../../src/password-builder/password-builder-by-sets.service.js";
 import {PasswordComponent} from "../react/password-component";
@@ -47,6 +46,7 @@ export class Password extends Component {
     setLength(length) {
         this.length = length;
         this.passwordBuilder.setLength(this.length);
+
         this.renew();
     }
 }

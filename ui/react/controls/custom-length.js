@@ -2,7 +2,7 @@
 import CopyTextToClipboardService from "../../../src/copy-text-to-clipboard.service.js";
 
 import React from 'react';
-import ReactDOM from 'react-dom';
+
 import {PasswordEvents} from "../../../src/password-generator-app/password-events";
 export function CustomLength({password}) {
     const [length, setLength] = React.useState(password.getLength());
@@ -12,7 +12,7 @@ export function CustomLength({password}) {
     };
 
     React.useEffect(() => {
-        password.getElement().addEventListener(PasswordEvents.UPDATED,()=>setLength(password.getLength()));
+        password.passwordBuilder.getEvents().on(PasswordEvents.UPDATED,()=>setLength(password.getLength()));
     },[]);
 
     return (

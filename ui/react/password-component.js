@@ -6,7 +6,6 @@ import {Copy} from "./actions/copy";
 import {Renew} from "./actions/renew";
 import {SymbolsSetUsage} from "./controls/symbols-set-usage";
 import {CustomLength} from "./controls/custom-length";
-import {PredefinedLengthControls} from "./controls/predefined-length-controls";
 import {PredefinedLength} from "./controls/predefined-length";
 
 export function PasswordComponent({password}) {

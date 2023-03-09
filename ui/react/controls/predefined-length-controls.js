@@ -8,12 +8,7 @@ import {PasswordEvents} from "../../../src/password-generator-app/password-event
 export function PredefinedLengthControls({password, length}) {
     return (
         <>
-            <PredefinedLength password={password} length="4" />
-            <PredefinedLength password={password} length="8" />
-            <PredefinedLength password={password} length="12" />
-            <PredefinedLength password={password} length="16" />
-            <PredefinedLength password={password} length="24" />
-            <PredefinedLength password={password} length="32" />
+
         </>
     );
 }

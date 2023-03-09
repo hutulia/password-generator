@@ -6,6 +6,8 @@ import {Copy} from "./actions/copy";
 import {Renew} from "./actions/renew";
 import {SymbolsSetUsage} from "./controls/symbols-set-usage";
 import {CustomLength} from "./controls/custom-length";
+import {PredefinedLengthControls} from "./controls/predefined-length-controls";
+import {PredefinedLength} from "./controls/predefined-length";
 
 export function PasswordComponent({password}) {
     return (
@@ -21,7 +23,17 @@ export function PasswordComponent({password}) {
                 <SymbolsSetUsage password={password} symbolsSet={password.symbolsSetRegistry.findByName('numbers')} title='123' />
                 <SymbolsSetUsage password={password} symbolsSet={password.symbolsSetRegistry.findByName('special')} title='!@#' />
             </div>
+
             <CustomLength password={password} />
+
+            <div className="predefined-length">
+                <PredefinedLength password={password} length="4" />
+                <PredefinedLength password={password} length="8" />
+                <PredefinedLength password={password} length="12" />
+                <PredefinedLength password={password} length="16" />
+                <PredefinedLength password={password} length="24" />
+                <PredefinedLength password={password} length="32" />
+            </div>
         </>
     );
 }

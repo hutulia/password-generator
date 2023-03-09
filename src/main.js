@@ -21,10 +21,4 @@ window.passwordBuilder.setLength(4);
 window.passwordBuilder.useSymbolsSets(...window.symbolsSetRegistry.getAll());
 window.passwordBuilder.build();
 
-window.mainPassword = new Password(
-    document.querySelector('.main-password'),
-    window.passwordBuilder,
-    window.symbolsSetRegistry
-);
-
-ReactDOM.createRoot(document.querySelector('#app')).render(React.createElement(App, {password: window.mainPassword}));
+ReactDOM.createRoot(document.querySelector('#app')).render(React.createElement(App, {passwordBuilder: window.passwordBuilder}));

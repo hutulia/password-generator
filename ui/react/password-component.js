@@ -11,27 +11,27 @@ import {PredefinedLength} from "./controls/predefined-length";
 export function PasswordComponent({password}) {
     return (
         <div className="password main-password">
-            <PasswordAsText password={password} />
+            <PasswordAsText passwordBuilder={passwordBuilder} />
             <div className="actions">
-                <Copy passwordBuilder = {passwordBuilder} />
                 <Renew passwordBuilder = {passwordBuilder} />
+                <Copy passwordBuilder = {passwordBuilder} />
             </div>
             <div className="symbols">
-                <SymbolsSetUsage passwordBuilder={password.passwordBuilder} symbolsSet={password.symbolsSetRegistry.findByName('lower')} title='abc' />
-                <SymbolsSetUsage passwordBuilder={password.passwordBuilder} symbolsSet={password.symbolsSetRegistry.findByName('upper')} title='ABC' />
-                <SymbolsSetUsage passwordBuilder={password.passwordBuilder} symbolsSet={password.symbolsSetRegistry.findByName('numbers')} title='123' />
-                <SymbolsSetUsage passwordBuilder={password.passwordBuilder} symbolsSet={password.symbolsSetRegistry.findByName('special')} title='!@#' />
+                <SymbolsSetUsage passwordBuilder={passwordBuilder} symbolsSet={symbolsSetRegistry.findByName('lower')} title='abc' />
+                <SymbolsSetUsage passwordBuilder={passwordBuilder} symbolsSet={symbolsSetRegistry.findByName('upper')} title='ABC' />
+                <SymbolsSetUsage passwordBuilder={passwordBuilder} symbolsSet={symbolsSetRegistry.findByName('numbers')} title='123' />
+                <SymbolsSetUsage passwordBuilder={passwordBuilder} symbolsSet={symbolsSetRegistry.findByName('special')} title='!@#' />
             </div>
 
-            <CustomLength passwordBuilder={password.passwordBuilder} />
+            <CustomLength passwordBuilder={passwordBuilder} />
 
             <div className="lengths">
-                <PredefinedLength passwordBuilder={password.passwordBuilder} length="4" />
-                <PredefinedLength passwordBuilder={password.passwordBuilder} length="8" />
-                <PredefinedLength passwordBuilder={password.passwordBuilder} length="12" />
-                <PredefinedLength passwordBuilder={password.passwordBuilder} length="16" />
-                <PredefinedLength passwordBuilder={password.passwordBuilder} length="24" />
-                <PredefinedLength passwordBuilder={password.passwordBuilder} length="32" />
+                <PredefinedLength passwordBuilder={passwordBuilder} length="4" />
+                <PredefinedLength passwordBuilder={passwordBuilder} length="8" />
+                <PredefinedLength passwordBuilder={passwordBuilder} length="12" />
+                <PredefinedLength passwordBuilder={passwordBuilder} length="16" />
+                <PredefinedLength passwordBuilder={passwordBuilder} length="24" />
+                <PredefinedLength passwordBuilder={passwordBuilder} length="32" />
             </div>
         </div>
     );

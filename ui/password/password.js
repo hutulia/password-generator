@@ -19,22 +19,4 @@ export class Password extends Component {
         this.symbolsSetRegistry = symbolsSetRegitry;
         this.passwordBuilder = passwordBuilder;
     }
-
-    getPassword() {
-        return this.passwordBuilder.getPassword();
-    }
-
-    renew() {
-        this.passwordBuilder.build();
-    }
-
-    getLength() {
-        return this.passwordBuilder.getLength();
-    }
-
-    setLength(length) {
-        this.length = length;
-        this.passwordBuilder.setLength(this.length);
-        this.renew();
-    }
 }

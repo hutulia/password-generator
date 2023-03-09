@@ -11,6 +11,6 @@ import {PasswordComponent} from "./password-component";
 
 export function App({password}) {
     return (
-        <PasswordComponent password={password}/>
+        <PasswordComponent passwordBuilder={passwordBuilder}/>
     );
 }

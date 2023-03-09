@@ -20,7 +20,7 @@ export function Copy({password}) {
     return (
         <button
             onClick = {copy}
-            className= {'btn'}
+            className= 'btn'
         >
             {currentSymbol}
         </button>

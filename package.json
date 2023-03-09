@@ -14,6 +14,7 @@
 
     "comment": "update version at index.html",
     "build": "webpack --mode production",
+    "serve": "serve .",
     "start:dev": "serve . && webpack"
   },
   "dependencies": {

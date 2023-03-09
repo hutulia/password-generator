@@ -13,6 +13,8 @@ import {PasswordBuilderBySetsService} from "../../src/password-builder/password-
 
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {PredefinedLengthControls} from "../react/controls/predefined-length-controls";
+import {SymbolsSetUsageControls} from "../react/controls/symbols-set-usage-controls";
 
 export class Password extends Component {
     length = 8;
@@ -38,18 +40,9 @@ export class Password extends Component {
 
         ReactDOM.createRoot(this.element.querySelector('.custom-length-wrapper')).render(React.createElement(CustomLength, {password: this}));
 
-        [4,8,12,16,24,32].map(length => new PredefinedLength(this.element.querySelector('.pl'+length), this));
+        ReactDOM.createRoot(this.element.querySelector('.predefined-length-controls')).render(React.createElement(PredefinedLengthControls, {password: this}));
 
-        ['lower', 'upper', 'numbers', 'special'].map(name => {
-            const symbolsSet = this.symbolsSetRegistry.findByName(name);
-            this.passwordBuilder.useSymbolsSet(symbolsSet);
-
-            new SymbolsSetUsage(
-                document.querySelector('.set-usage[data-name="'+symbolsSet.name+'"]'),
-                symbolsSet,
-                this
-            );
-        });
+        ReactDOM.createRoot(this.element.querySelector('.symbols-set-usage-controls')).render(React.createElement(SymbolsSetUsageControls, {password: this}));
 
         this.passwordBuilder.setLength(this.length);
         this.renew();

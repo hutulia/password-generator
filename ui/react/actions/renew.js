@@ -1,12 +1,11 @@
 'use strict';
-import CopyTextToClipboardService from "../../../src/copy-text-to-clipboard.service.js";
 
 import React from 'react';
-import ReactDOM from 'react-dom';
-export function Renew({password}) {
+
+export function Renew({passwordBuilder}) {
     return (
         <button
-            onClick={() => password.renew()}
+            onClick={() => passwordBuilder.build()}
             className={'btn'}
         >
             🔄

@@ -3,7 +3,7 @@ import CopyTextToClipboardService from "../../../src/copy-text-to-clipboard.serv
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-export function Copy({password}) {
+export function Copy({passwordBuilder}) {
     const toCopySymbol = '⎘';
     const copiedSymbol = '✅';
 
@@ -11,7 +11,7 @@ export function Copy({password}) {
 
     const copy = () => {
         setCurrentSymbol(copiedSymbol);
-        CopyTextToClipboardService.copy(password.getPassword())
+        CopyTextToClipboardService.copy(passwordBuilder.getPassword())
         setTimeout(() => {
             setCurrentSymbol(toCopySymbol);
         },500);

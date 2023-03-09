@@ -13,8 +13,8 @@ export function PasswordComponent({password}) {
         <div className="password main-password">
             <PasswordAsText password={password} />
             <div className="actions">
-                <Copy password = {password} />
-                <Renew password = {password} />
+                <Copy passwordBuilder = {passwordBuilder} />
+                <Renew passwordBuilder = {passwordBuilder} />
             </div>
             <div className="symbols">
                 <SymbolsSetUsage passwordBuilder={password.passwordBuilder} symbolsSet={password.symbolsSetRegistry.findByName('lower')} title='abc' />

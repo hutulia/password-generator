@@ -5,7 +5,7 @@ import {PasswordEvents} from "../../src/password-generator-app/password-events.j
 import {SymbolsSetRegistry} from "../../src/symbols-set/symbols-set-registry.js";
 import {PasswordBuilderBySetsService} from "../../src/password-builder/password-builder-by-sets.service.js";
 import {PasswordComponent} from "../react/password-component";
-
+import {App} from "../react/App";
 export class Password extends Component {
     length = 8;
 
@@ -14,20 +14,10 @@ export class Password extends Component {
      */
     passwordBuilder = null;
 
-    /**
-     * @type {SymbolsSetRegistry}
-     */
-    symbolsSetRegistry = null;
-
     constructor(element, passwordBuilder, symbolsSetRegitry) {
         super(element);
         this.symbolsSetRegistry = symbolsSetRegitry;
         this.passwordBuilder = passwordBuilder;
-        this.passwordBuilder.setLength(this.length);
-        this.passwordBuilder.useSymbolsSets(...this.symbolsSetRegistry.getAll());
-        this.renew();
-
-        ReactDOM.createRoot(document.querySelector('#app')).render(React.createElement(PasswordComponent, {password: this}));
     }
 
     getPassword() {
@@ -39,7 +29,7 @@ export class Password extends Component {
     }
 
     getLength() {
-        return this.length;
+        return this.passwordBuilder.getLength();
     }
 
     setLength(length) {

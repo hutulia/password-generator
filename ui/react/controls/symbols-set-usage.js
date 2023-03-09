@@ -3,21 +3,21 @@
 import React from 'react';
 import {PasswordEvents} from "../../../src/password-generator-app/password-events";
 
-export function SymbolsSetUsage({password, symbolsSet, title}) {
-    const [used, setUsed] = React.useState(password.passwordBuilder.uses(symbolsSet));
+export function SymbolsSetUsage({passwordBuilder, symbolsSet, title}) {
+    const [used, setUsed] = React.useState(passwordBuilder.uses(symbolsSet));
 
     const click = () => {
         if(used){
-            password.passwordBuilder.doNotUseSymbolsSet(symbolsSet);
+            passwordBuilder.doNotUseSymbolsSet(symbolsSet);
         }else{
-            password.passwordBuilder.useSymbolsSet(symbolsSet);
+            passwordBuilder.useSymbolsSet(symbolsSet);
         }
 
         setUsed(!used);
     };
 
     React.useEffect(() => {
-        password.renew();
+        passwordBuilder.build();
     },[used]);
 
     let classList = ['btn','set-usage'];

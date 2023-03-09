@@ -4,9 +4,9 @@ import CopyTextToClipboardService from "../../../src/copy-text-to-clipboard.serv
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {PasswordEvents} from "../../../src/password-generator-app/password-events";
-export function PredefinedLength({password, length}) {
+export function PredefinedLength({passwordBuilder, length}) {
     const click = (e) => {
-        password.setLength(length);
+        passwordBuilder.setLength(e.target.innerHTML).build();
     };
 
     // React.useEffect(() => {

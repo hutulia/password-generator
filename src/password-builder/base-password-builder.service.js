@@ -21,6 +21,11 @@ export class BasePasswordBuilderService {
     setLength(length){
         this.length = Number.parseInt(length);
         this.events.emit(PasswordEvents.LENGTH_UPDATED);
+        return this;
+    }
+
+    getLength(){
+        return this.length;
     }
 
     getEvents(){

@@ -1,15 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import {PasswordAsText} from "../react/views/password-as-text.js";
-import {Actions} from "../react/actions/actions.js";
 import {Component} from "../../src/ui-framework/component.js";
 import {PasswordEvents} from "../../src/password-generator-app/password-events.js";
-import CopyTextToClipboardService from "../../src/copy-text-to-clipboard.service.js";
 import {CustomLength} from "../react/controls/custom-length";
 import {SymbolsSetRegistry} from "../../src/symbols-set/symbols-set-registry.js";
 import {PasswordBuilderBySetsService} from "../../src/password-builder/password-builder-by-sets.service.js";
 import {PredefinedLengthControls} from "../react/controls/predefined-length-controls";
-import {SymbolsSetUsageControls} from "../react/controls/symbols-set-usage-controls";
+import {PasswordComponent} from "../react/password-component";
 
 export class Password extends Component {
     length = 8;
@@ -32,15 +29,10 @@ export class Password extends Component {
         this.passwordBuilder.useSymbolsSets(...this.symbolsSetRegistry.getAll());
         this.renew();
 
-        ReactDOM.createRoot(this.element.querySelector('.password-as-text')).render(React.createElement(PasswordAsText, {password: this}));
-
-        ReactDOM.createRoot(this.element.querySelector('.actions')).render(React.createElement(Actions, {password: this}));
-
-        ReactDOM.createRoot(this.element.querySelector('.custom-length-wrapper')).render(React.createElement(CustomLength, {password: this}));
+        ReactDOM.createRoot(document.querySelector('.p')).render(React.createElement(PasswordComponent, {password: this}));
 
         ReactDOM.createRoot(this.element.querySelector('.predefined-length-controls')).render(React.createElement(PredefinedLengthControls, {password: this}));
 
-        ReactDOM.createRoot(this.element.querySelector('.symbols-set-usage-controls')).render(React.createElement(SymbolsSetUsageControls, {password: this}));
     }
 
     getPassword() {

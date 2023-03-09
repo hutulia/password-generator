@@ -17,7 +17,7 @@
             padding: 1em;
         }
 
-        .password-as-text {
+        .password-text {
             border: 2px solid lightgrey;
             background: #f7f7f7;
             display: block;
@@ -48,32 +48,18 @@
 <body>
 <h1>Генератор паролів</h1>
 
-<div id="app-orig">
+<div id="app">
+    <div class="p"></div>
+
     <div class="password main-password">
-        <p class="password-as-text"></p>
 
-        <div class="actions-wrapper">
-            <p class="actions">
-                <span class="action-copy"></span>
-                <span class="action-renew"></span>
-            </p>
-        </div>
+        <label class="custom-length-wrapper"></label>
 
-        <div>
-            <div class="symbols-set-usage-controls"></div>
-
-            <label class="custom-length-wrapper">
-                <input class="custom-length" type="number" min="0" max="32" value="" size="3">
-            </label>
-
-            <div class="predefined-length-controls"></div>
-        </div>
+        <div class="predefined-length-controls"></div>
     </div>
 </div>
 
 <script type="module" src="dist/bundle.js?v=8"></script>
-<!--<script type="module" src="main.js"></script>-->
-<!--<script src='index_bundle.js'></script>-->
 
 </body>
 </html>

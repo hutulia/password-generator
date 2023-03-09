@@ -11,5 +11,5 @@ export function PasswordAsText({password}) {
         password.getElement().addEventListener(PasswordEvents.UPDATED,()=>setPasswordAsText(password.getPassword()));
     },[]);
 
-    return passwordAsText;
+    return <p className="password-text">{passwordAsText}</p>;
 }

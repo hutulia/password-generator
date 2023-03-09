@@ -5,6 +5,10 @@ export class SymbolsSetRegistry {
         return this.items.find(item => item.name === name);
     }
 
+    getAll(){
+        return this.items;
+    }
+
     /**
      * @param items
      */

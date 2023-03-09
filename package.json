@@ -14,8 +14,9 @@
 
     "comment": "update version at index.html",
     "build": "webpack --mode production",
+    "build:watch": "webpack --mode development --watch",
     "serve": "serve .",
-    "start:dev": "serve . && webpack"
+    "start:dev": "serve . && webpack --mode development --watch"
   },
   "dependencies": {
     "@babel/cli": "^7.21.0",

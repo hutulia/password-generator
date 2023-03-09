@@ -5,7 +5,6 @@ import {lowerLetters, numbers, specialSymbols, upperLetters} from "./symbols-set
 import {SymbolsSetRegistry} from "./symbols-set/symbols-set-registry.js";
 
 import React from 'react';
-import ReactDOM from 'react-dom';
 
 window.symbolsSetRegistry = new SymbolsSetRegistry();
 symbolsSetRegistry.register(

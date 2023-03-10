@@ -3,8 +3,11 @@
 import CopyTextToClipboardService from "../../modules/copy-text-to-clipboard.service.js";
 import React from 'react';
 import Button from '@mui/material/Button';
+import {PasswordContext} from "./password";
+import { useContext } from "react";
 
-export function Copy({passwordBuilder}) {
+export function Copy() {
+    const passwordBuilder = useContext(PasswordContext);
     const toCopySymbol = '⎘';
     const copiedSymbol = '✅';
 

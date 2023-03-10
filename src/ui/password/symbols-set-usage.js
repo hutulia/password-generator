@@ -1,9 +1,11 @@
 'use strict';
 
 import React from 'react';
-import {PasswordEvents} from "../../modules/password-builder/password-events";
+import {PasswordContext} from "./password";
+import { useContext } from "react";
 
-export function SymbolsSetUsage({passwordBuilder, symbolsSet, title}) {
+export function SymbolsSetUsage({symbolsSet, title}) {
+    const passwordBuilder = useContext(PasswordContext);
     const [used, setUsed] = React.useState(passwordBuilder.uses(symbolsSet));
 
     const click = () => {

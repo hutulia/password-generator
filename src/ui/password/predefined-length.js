@@ -1,10 +1,12 @@
 'use strict';
-import CopyTextToClipboardService from "../../modules/copy-text-to-clipboard.service.js";
 
 import React from 'react';
-import ReactDOM from 'react-dom';
 import {PasswordEvents} from "../../modules/password-builder/password-events";
-export function PredefinedLength({passwordBuilder, length}) {
+import {PasswordContext} from "./password";
+import { useContext } from "react";
+
+export function PredefinedLength({length}) {
+    const passwordBuilder = useContext(PasswordContext);
     const [active, setActive] = React.useState(length == passwordBuilder.getLength());
     const click = (e) => {
         passwordBuilder.setLength(e.target.innerHTML).build();

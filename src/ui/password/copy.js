@@ -1,9 +1,9 @@
 'use strict';
-import CopyTextToClipboardService from "../../../src/copy-text-to-clipboard.service.js";
+
+import CopyTextToClipboardService from "../../modules/copy-text-to-clipboard.service.js";
+import React from 'react';
 import Button from '@mui/material/Button';
 
-import React from 'react';
-import ReactDOM from 'react-dom';
 export function Copy({passwordBuilder}) {
     const toCopySymbol = '⎘';
     const copiedSymbol = '✅';
@@ -18,9 +18,5 @@ export function Copy({passwordBuilder}) {
         },500);
     };
 
-    return (
-        <>
-            <Button variant="outlined" onClick = {copy}>{currentSymbol}</Button>
-        </>
-    );
+    return <Button variant="outlined" onClick={copy}>{currentSymbol}</Button>;
 }

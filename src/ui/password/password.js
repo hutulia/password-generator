@@ -1,21 +1,23 @@
 'use strict';
 
 import React from 'react';
-import {PasswordAsText} from "./views/password-as-text";
-import {Copy} from "./actions/copy";
-import {Renew} from "./actions/renew";
-import {SymbolsSetUsage} from "./controls/symbols-set-usage";
-import {CustomLength} from "./controls/custom-length";
-import {PredefinedLength} from "./controls/predefined-length";
+import {PasswordAsText} from "./password-as-text";
+import {Copy} from "./copy";
+import {Renew} from "./renew";
+import {SymbolsSetUsage} from "./symbols-set-usage";
+import {CustomLength} from "./custom-length";
+import {PredefinedLength} from "./predefined-length";
 
-export function PasswordComponent({password}) {
+export function Password({passwordBuilder}) {
     return (
-        <div className="password main-password">
+        <div className="password">
             <PasswordAsText passwordBuilder={passwordBuilder} />
+
             <div className="actions">
                 <Renew passwordBuilder = {passwordBuilder} />
                 <Copy passwordBuilder = {passwordBuilder} />
             </div>
+
             <div className="symbols">
                 <SymbolsSetUsage passwordBuilder={passwordBuilder} symbolsSet={symbolsSetRegistry.findByName('lower')} title='abc' />
                 <SymbolsSetUsage passwordBuilder={passwordBuilder} symbolsSet={symbolsSetRegistry.findByName('upper')} title='ABC' />

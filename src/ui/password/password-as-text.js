@@ -1,6 +1,6 @@
 'use strict';
 
-import {PasswordEvents} from "../../../src/password-generator-app/password-events.js";
+import {PasswordEvents} from "../../modules/password-builder/password-events.js";
 
 import React from 'react';
 

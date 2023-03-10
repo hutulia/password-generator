@@ -1,9 +1,9 @@
 'use strict';
-import CopyTextToClipboardService from "../../../src/copy-text-to-clipboard.service.js";
 
+import {PasswordEvents} from "../../modules/password-builder/password-events";
 import React from 'react';
 
-import {PasswordEvents} from "../../../src/password-generator-app/password-events";
+
 export function CustomLength({passwordBuilder}) {
     const [length, setLength] = React.useState(passwordBuilder.getLength());
 

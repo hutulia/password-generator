@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-import {PasswordEvents} from "../../../src/password-generator-app/password-events";
+import {PasswordEvents} from "../../modules/password-builder/password-events";
 
 export function SymbolsSetUsage({passwordBuilder, symbolsSet, title}) {
     const [used, setUsed] = React.useState(passwordBuilder.uses(symbolsSet));

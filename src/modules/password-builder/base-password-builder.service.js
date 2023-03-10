@@ -1,4 +1,4 @@
-import {PasswordEvents} from "../password-generator-app/password-events";
+import {PasswordEvents} from "./password-events";
 
 const events = require('events');
 

@@ -1,14 +1,17 @@
 'use strict';
 
 import React from 'react';
+import RefreshIcon from '@mui/icons-material/Refresh';
+import Button from '@mui/material/Button';
 
 export function Renew({passwordBuilder}) {
     return (
-        <button
+        <Button
             onClick={() => passwordBuilder.build()}
-            className={'btn'}
+            variant="outlined"
         >
-            🔄
-        </button>
+            <RefreshIcon />
+        </Button>
+
     );
 }

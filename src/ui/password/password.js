@@ -13,6 +13,7 @@ import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import {PasswordEvents} from "../../modules/password-builder/password-events";
+import Typography from '@mui/material/Typography';
 
 export const PasswordContext = createContext();
 
@@ -48,6 +49,7 @@ export function Password({passwordBuilder}) {
                         justifyContent: "space-between",
                         alignItems: "center",
                         overflow: "hidden",
+                        marginBottom: "1em",
                     }}>
                         <PasswordAsText />
                         <div className="actions" style={{
@@ -60,40 +62,44 @@ export function Password({passwordBuilder}) {
                     </div>
 
 
-                    <div>
+                    <div className={'settings'} style={{
+                        display: "flex",
+                    }}>
+                        <div className={'settings-symbols'} style={{
+                            flexGrow: "1",
+                        }}>
+                            <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+                                Символи
+                            </Typography>
+                            <ToggleButtonGroup
+                                value={formats}
+                                onChange={handleFormat}
+                                aria-label="symbols usage"
+                            >
+                                <ToggleButton value="lower" aria-label="lower" style={{textTransform: "none"}} >
+                                    abc
+                                </ToggleButton>
+                                <ToggleButton value="upper" aria-label="upper" >
+                                    ABC
+                                </ToggleButton>
+                                <ToggleButton value="numbers" aria-label="numbers" >
+                                    123
+                                </ToggleButton>
+                                <ToggleButton value="special" aria-label="special" >
+                                    !@#
+                                </ToggleButton>
+                            </ToggleButtonGroup>
+                        </div>
 
-                    <ToggleButtonGroup
-                        value={formats}
-                        onChange={handleFormat}
-                        aria-label="symbols usage"
-                    >
-                        <ToggleButton value="lower" aria-label="lower" style={{textTransform: "none"}} >
-                            abc
-                        </ToggleButton>
-                        <ToggleButton value="upper" aria-label="upper" >
-                            ABC
-                        </ToggleButton>
-                        <ToggleButton value="numbers" aria-label="numbers" >
-                            123
-                        </ToggleButton>
-                        <ToggleButton value="special" aria-label="special" >
-                            !@#
-                        </ToggleButton>
-                    </ToggleButtonGroup>
+                        <div className={'length-settings'}>
+                            <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+                                Довжина
+                            </Typography>
 
-                    <ToggleButtonGroup
-                        value={predefinedLengthUsed}
-                        onChange={handlePredefinedLength}
-                        exclusive={true}
-                        aria-label="predefined-length"
-                    >
-                        <ToggleButton value={4} aria-label={4}>4</ToggleButton>
-                        <ToggleButton value={8} aria-label={8}>8</ToggleButton>
-                        <ToggleButton value={16} aria-label={16}>16</ToggleButton>
-                        <ToggleButton value={32} aria-label={32}>32</ToggleButton>
-                    </ToggleButtonGroup>
+                            <div><CustomLength /></div>
 
-                    <CustomLength />
+
+                        </div>
                     </div>
 
                 </CardContent>

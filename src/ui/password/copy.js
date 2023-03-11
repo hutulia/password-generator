@@ -22,5 +22,5 @@ export function Copy() {
         },750);
     };
 
-    return <Button size="medium" onClick={copy}>{currentSymbol}</Button>;
+    return <Button size="large" onClick={copy}>{currentSymbol}</Button>;
 }

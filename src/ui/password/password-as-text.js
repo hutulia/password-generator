@@ -21,6 +21,9 @@ export function PasswordAsText() {
                 overflow: "hidden",
                 whiteSpace: "nowrap",
                 fontFamily: "monospace",
+                fontWeight: "100",
+                lineHeight: "1.5em",
+                minHeight: "1.5em",
             }}>
                 {passwordAsText}
             </Typography>

@@ -12,10 +12,9 @@ export function Renew() {
     return (
         <Button
             onClick={() => passwordBuilder.build()}
-            size="medium"
+            size="large"
         >
             <RefreshIcon />
         </Button>
-
     );
 }

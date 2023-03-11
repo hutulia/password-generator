@@ -5,11 +5,12 @@ import React from 'react';
 import Button from '@mui/material/Button';
 import {PasswordContext} from "./password";
 import { useContext } from "react";
-
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import CheckIcon from '@mui/icons-material/Check';
 export function Copy() {
     const passwordBuilder = useContext(PasswordContext);
-    const toCopySymbol = '⎘';
-    const copiedSymbol = '✅';
+    const toCopySymbol = <ContentCopyIcon />;
+    const copiedSymbol = <CheckIcon />;
 
     const [currentSymbol, setCurrentSymbol] = React.useState(toCopySymbol);
 
@@ -18,8 +19,8 @@ export function Copy() {
         CopyTextToClipboardService.copy(passwordBuilder.getPassword())
         setTimeout(() => {
             setCurrentSymbol(toCopySymbol);
-        },500);
+        },750);
     };
 
-    return <Button variant="outlined" onClick={copy}>{currentSymbol}</Button>;
+    return <Button size="medium" onClick={copy}>{currentSymbol}</Button>;
 }

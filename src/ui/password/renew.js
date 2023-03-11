@@ -13,8 +13,9 @@ export function Renew() {
         <Button
             onClick={() => passwordBuilder.build()}
             size="large"
+            startIcon={<RefreshIcon />}
         >
-            <RefreshIcon />
+             Оновити
         </Button>
     );
 }

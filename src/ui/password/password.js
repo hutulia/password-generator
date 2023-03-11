@@ -14,6 +14,9 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import {PasswordEvents} from "../../modules/password-builder/password-events";
 import Typography from '@mui/material/Typography';
+import Link from '@mui/material/Link';
+import Button from "@mui/material/Button";
+import {Divider} from "@mui/material";
 
 export const PasswordContext = createContext();
 
@@ -27,6 +30,12 @@ export function Password({passwordBuilder}) {
         passwordBuilder.build();
         setSymbolSetsNamesToUse(symbolSetsNamesToUse);
 
+    };
+
+    const setLength = (length) => {
+        if(length !== passwordBuilder.getLength()){
+            passwordBuilder.setLength(length).build();
+        }
     };
 
     return (
@@ -86,6 +95,14 @@ export function Password({passwordBuilder}) {
 
                             <div><CustomLength /></div>
 
+                            <br />
+
+                            <Button color='secondary' variant="outlined" onClick={()=>{setLength(4)}}>4</Button>
+                            <Button color='secondary' variant="outlined" onClick={()=>{setLength(8)}}>8</Button>
+                            <Button color='secondary' variant="outlined" onClick={()=>{setLength(12)}}>12</Button>
+                            <Button color='secondary' variant="outlined" onClick={()=>{setLength(24)}}>24</Button>
+                            <Button color='secondary' variant="outlined" onClick={()=>{setLength(32)}}>32</Button>
+                            <Button color='secondary' variant="outlined" onClick={()=>{setLength(64)}}>64</Button>
 
                         </div>
                     </div>

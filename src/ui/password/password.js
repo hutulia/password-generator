@@ -19,26 +19,15 @@ export const PasswordContext = createContext();
 
 export function Password({passwordBuilder}) {
     const usedSymbolsSetName = passwordBuilder.setsToUse.map(setOfSymbols => setOfSymbols.name);
-    const [formats, setFormats] = React.useState(() => usedSymbolsSetName);
+    const [symbolSetsNamesToUse, setSymbolSetsNamesToUse] = React.useState(() => usedSymbolsSetName);
 
-    const handleFormat = (event, formats) => {
-        passwordBuilder.setsToUse.map(setOfSymbols => passwordBuilder.doNotUseSymbolsSet(setOfSymbols));
-        formats.map(name => passwordBuilder.useSymbolsSet(window.symbolsSetRegistry.findByName(name)));
+    const handleSymbolSetsToUse = (event, symbolSetsNamesToUse) => {
+        passwordBuilder.setsToUse = [];
+        symbolSetsNamesToUse.map(name => passwordBuilder.useSymbolsSet(window.symbolsSetRegistry.findByName(name)));
         passwordBuilder.build();
-        setFormats(formats);
-    };
+        setSymbolSetsNamesToUse(symbolSetsNamesToUse);
 
-    const [predefinedLengthUsed, setPredefinedLengthUsed] = React.useState(passwordBuilder.getLength());
-    const handlePredefinedLength = (e, newValue) => {
-        if(newValue){
-            passwordBuilder.setLength(newValue).build();
-            setPredefinedLengthUsed(newValue);
-        }else{
-            setPredefinedLengthUsed(predefinedLengthUsed);
-        }
     };
-
-    React.useEffect(() => {passwordBuilder.getEvents().on(PasswordEvents.LENGTH_UPDATED,()=>setPredefinedLengthUsed(passwordBuilder.getLength()))},[]);
 
     return (
         <PasswordContext.Provider value={passwordBuilder}>
@@ -71,8 +60,8 @@ export function Password({passwordBuilder}) {
                                 Символи
                             </Typography>
                             <ToggleButtonGroup
-                                value={formats}
-                                onChange={handleFormat}
+                                value={symbolSetsNamesToUse}
+                                onChange={handleSymbolSetsToUse}
                                 aria-label="symbols usage"
                             >
                                 <ToggleButton value="lower" aria-label="lower" style={{textTransform: "none"}} >

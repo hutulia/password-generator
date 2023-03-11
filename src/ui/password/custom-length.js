@@ -13,14 +13,18 @@ export function CustomLength() {
     const [length, setLength] = React.useState(passwordBuilder.getLength());
 
     const change = (e) => {
-        passwordBuilder.setLength(e.target.value).build();
+        let newValue = e.target.value;
+        if(newValue < 0){
+            newValue = 0;
+        }
+        passwordBuilder.setLength(newValue).build();
     };
 
     const diff = (howMush) => {
         const oldValue = passwordBuilder.getLength();
         let newValue = oldValue+howMush;
-        if(newValue < 1){
-            newValue = 1;
+        if(newValue < 0){
+            newValue = 0;
         }
         if(oldValue !== newValue){
             passwordBuilder.setLength(newValue).build();

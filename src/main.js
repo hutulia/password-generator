@@ -15,8 +15,11 @@ window.symbolsSetRegistry.register(
 );
 
 window.passwordBuilder = new PasswordBuilderBySetsService();
-window.passwordBuilder.setLength(4);
-window.passwordBuilder.useSymbolsSets(...window.symbolsSetRegistry.getAll());
+window.passwordBuilder.setLength(8);
+window.passwordBuilder.useSymbolsSets(
+    window.symbolsSetRegistry.findByName('upper'),
+    window.symbolsSetRegistry.findByName('numbers')
+);
 window.passwordBuilder.build();
 
 ReactDOM.createRoot(document.querySelector('#app')).render(React.createElement(App, {passwordBuilder: window.passwordBuilder}));

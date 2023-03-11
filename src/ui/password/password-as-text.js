@@ -5,6 +5,7 @@ import {PasswordEvents} from "../../modules/password-builder/password-events.js"
 import React from 'react';
 import {PasswordContext} from "./password";
 import { useContext } from "react";
+import Typography from "@mui/material/Typography";
 
 export function PasswordAsText() {
     const passwordBuilder = useContext(PasswordContext);
@@ -14,6 +15,16 @@ export function PasswordAsText() {
         passwordBuilder.getEvents().on(PasswordEvents.UPDATED,()=>setPasswordAsText(passwordBuilder.getPassword()));
     },[]);
 
-    return passwordAsText;
-    return <p className="password-text">{passwordAsText}</p>;
+    return (
+        <>
+            <Typography variant="h2" component="div" style={{
+                minHeight: "1.5em",
+                overflow: "hidden",
+                whiteSpace: "nowrap",
+                fontFamily: "monospace",
+            }}>
+                {passwordAsText}
+            </Typography>
+        </>
+    );
 }

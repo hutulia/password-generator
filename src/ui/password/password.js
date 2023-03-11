@@ -18,30 +18,7 @@ export function Password({passwordBuilder}) {
     return (
         <PasswordContext.Provider value={passwordBuilder}>
             <div className="password">
-                <PasswordAsText />
 
-                <div className="actions">
-                    <Renew />
-                    <Copy />
-                </div>
-
-                <div className="symbols">
-                    <SymbolsSetUsage symbolsSet={symbolsSetRegistry.findByName('lower')} title='abc' />
-                    <SymbolsSetUsage symbolsSet={symbolsSetRegistry.findByName('upper')} title='ABC' />
-                    <SymbolsSetUsage symbolsSet={symbolsSetRegistry.findByName('numbers')} title='123' />
-                    <SymbolsSetUsage symbolsSet={symbolsSetRegistry.findByName('special')} title='!@#' />
-                </div>
-
-                <CustomLength />
-
-                <div className="lengths">
-                    <PredefinedLength length="4" />
-                    <PredefinedLength length="8" />
-                    <PredefinedLength length="12" />
-                    <PredefinedLength length="16" />
-                    <PredefinedLength length="24" />
-                    <PredefinedLength length="32" />
-                </div>
             </div>
             <OutlinedCard />
         </PasswordContext.Provider>
@@ -60,6 +37,7 @@ import FormatItalicIcon from '@mui/icons-material/FormatItalic';
 import FormatUnderlinedIcon from '@mui/icons-material/FormatUnderlined';
 import FormatColorFillIcon from '@mui/icons-material/FormatColorFill';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import {PasswordEvents} from "../../modules/password-builder/password-events";
 
 export function OutlinedCard() {
     const passwordBuilder = useContext(PasswordContext);
@@ -77,23 +55,21 @@ export function OutlinedCard() {
     const [predefinedLengthUsed, setPredefinedLengthUsed] = React.useState(passwordBuilder.getLength());
 
     const handlePredefinedLength = (e, newValue) => {
-        passwordBuilder.setLength(newValue).build();
-        setPredefinedLengthUsed(newValue);
+        if(newValue){
+            passwordBuilder.setLength(newValue).build();
+            setPredefinedLengthUsed(newValue);
+        }else{
+            setPredefinedLengthUsed(predefinedLengthUsed);
+        }
+
     };
+
+    React.useEffect(() => {passwordBuilder.getEvents().on(PasswordEvents.LENGTH_UPDATED,()=>setPredefinedLengthUsed(passwordBuilder.getLength()))},[]);
 
     return (
         <Card sx={{ minWidth: 275 }}>
             <CardContent>
-                <Typography variant="h2" component="div" style={{
-                    lineHeight: "1.5em",
-                    overflow: "hidden",
-                    whiteSpace: "nowrap",
-                }}>
-                    <PasswordAsText />
-                </Typography>
-
-                <br />
-                <br />
+                <PasswordAsText />
 
                 <ToggleButtonGroup
                     value={formats}
@@ -114,9 +90,6 @@ export function OutlinedCard() {
                     </ToggleButton>
                 </ToggleButtonGroup>
 
-                <br />
-                <br />
-
                 <ToggleButtonGroup
                     value={predefinedLengthUsed}
                     onChange={handlePredefinedLength}
@@ -133,7 +106,12 @@ export function OutlinedCard() {
                     <ToggleButton value={64} aria-label={64}>64</ToggleButton>
                 </ToggleButtonGroup>
 
+                <br />
+                <br />
+
+                <CustomLength />
             </CardContent>
+
             <CardActions>
                 <Renew />
                 <Copy />

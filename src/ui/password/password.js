@@ -74,40 +74,64 @@ export function OutlinedCard() {
         setFormats(formats);
     };
 
-    const handleChangeUseSymbolsSet = (e, newValue) => {
-        //console.log(e, newValue);
-    };
+    const [predefinedLengthUsed, setPredefinedLengthUsed] = React.useState(passwordBuilder.getLength());
 
-    // const [predefinedLengthUsed, setPredefinedLengthUsed] = React.useState(0);
-    // const handlePredefinedLength = () => {};
+    const handlePredefinedLength = (e, newValue) => {
+        passwordBuilder.setLength(newValue).build();
+        setPredefinedLengthUsed(newValue);
+    };
 
     return (
         <Card sx={{ minWidth: 275 }}>
             <CardContent>
-                <Typography variant="h2" component="div">
+                <Typography variant="h2" component="div" style={{
+                    lineHeight: "1.5em",
+                    overflow: "hidden",
+                    whiteSpace: "nowrap",
+                }}>
                     <PasswordAsText />
                 </Typography>
+
+                <br />
+                <br />
 
                 <ToggleButtonGroup
                     value={formats}
                     onChange={handleFormat}
                     aria-label="symbols usage"
                 >
-                    <ToggleButton value="lower" aria-label="lower" style={{textTransform: "none"}} onChange={handleChangeUseSymbolsSet}>
+                    <ToggleButton value="lower" aria-label="lower" style={{textTransform: "none"}} >
                         abc
                     </ToggleButton>
-                    <ToggleButton value="upper" aria-label="upper" onChange={handleChangeUseSymbolsSet}>
+                    <ToggleButton value="upper" aria-label="upper" >
                         ABC
                     </ToggleButton>
-                    <ToggleButton value="numbers" aria-label="numbers" onChange={handleChangeUseSymbolsSet}>
+                    <ToggleButton value="numbers" aria-label="numbers" >
                         123
                     </ToggleButton>
-                    <ToggleButton value="special" aria-label="special" onChange={handleChangeUseSymbolsSet}>
+                    <ToggleButton value="special" aria-label="special" >
                         !@#
                     </ToggleButton>
                 </ToggleButtonGroup>
 
+                <br />
+                <br />
 
+                <ToggleButtonGroup
+                    value={predefinedLengthUsed}
+                    onChange={handlePredefinedLength}
+                    exclusive={true}
+                    aria-label="predefined-length"
+                >
+                    <ToggleButton value={4} aria-label={4}>4</ToggleButton>
+                    <ToggleButton value={8} aria-label={8}>8</ToggleButton>
+                    <ToggleButton value={12} aria-label={12}>12</ToggleButton>
+                    <ToggleButton value={16} aria-label={16}>16</ToggleButton>
+                    <ToggleButton value={20} aria-label={20}>20</ToggleButton>
+                    <ToggleButton value={24} aria-label={24}>24</ToggleButton>
+                    <ToggleButton value={32} aria-label={32}>32</ToggleButton>
+                    <ToggleButton value={64} aria-label={64}>64</ToggleButton>
+                </ToggleButtonGroup>
 
             </CardContent>
             <CardActions>

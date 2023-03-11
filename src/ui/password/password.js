@@ -51,6 +51,7 @@ export function Password({passwordBuilder}) {
                         marginBottom: "1em",
                     }}>
                         <PasswordAsText />
+
                         <div className="actions" style={{
                             display: "flex",
                             paddingLeft: "0.25em",

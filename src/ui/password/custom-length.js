@@ -17,8 +17,14 @@ export function CustomLength() {
     };
 
     const diff = (howMush) => {
-        console.log(howMush);
-        passwordBuilder.setLength(passwordBuilder.getLength()+howMush).build();
+        const oldValue = passwordBuilder.getLength();
+        let newValue = oldValue+howMush;
+        if(newValue < 1){
+            newValue = 1;
+        }
+        if(oldValue !== newValue){
+            passwordBuilder.setLength(newValue).build();
+        }
     };
 
 

@@ -24,6 +24,8 @@ export function PasswordAsText() {
                 fontWeight: "100",
                 lineHeight: "1.5em",
                 minHeight: "1.5em",
+                height: "1.5em",
+                display: "inline-block",
             }}>
                 {passwordAsText}
             </Typography>

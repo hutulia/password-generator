@@ -45,7 +45,6 @@ export function Password({passwordBuilder}) {
             <Card sx={{ minWidth: 275 }}>
                 <CardContent>
                     <div className="head" style={{
-                        display: "flex",
                         justifyContent: "space-between",
                         alignItems: "center",
                         overflow: "hidden",
@@ -62,11 +61,10 @@ export function Password({passwordBuilder}) {
                     </div>
 
 
-                    <div className={'settings'} style={{
-                        display: "flex",
-                    }}>
+                    <div className={'settings'}>
                         <div className={'settings-symbols'} style={{
                             flexGrow: "1",
+                            marginBottom: "1em",
                         }}>
                             <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
                                 Символи

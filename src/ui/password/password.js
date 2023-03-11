@@ -61,7 +61,6 @@ export function OutlinedCard() {
         }else{
             setPredefinedLengthUsed(predefinedLengthUsed);
         }
-
     };
 
     React.useEffect(() => {passwordBuilder.getEvents().on(PasswordEvents.LENGTH_UPDATED,()=>setPredefinedLengthUsed(passwordBuilder.getLength()))},[]);

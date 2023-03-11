@@ -29,7 +29,10 @@ export function Password({passwordBuilder}) {
         symbolSetsNamesToUse.map(name => passwordBuilder.useSymbolsSet(window.symbolsSetRegistry.findByName(name)));
         passwordBuilder.build();
         setSymbolSetsNamesToUse(symbolSetsNamesToUse);
+    };
 
+    const defineSymbolsSetButtonColor = (symbolsSetName) => {
+        return passwordBuilder.uses(window.symbolsSetRegistry.findByName(symbolsSetName)) ? 'success' : '';
     };
 
     const setLength = (length) => {
@@ -73,16 +76,16 @@ export function Password({passwordBuilder}) {
                                 onChange={handleSymbolSetsToUse}
                                 aria-label="symbols usage"
                             >
-                                <ToggleButton value="lower" aria-label="lower" style={{textTransform: "none"}} >
+                                <ToggleButton value="lower" aria-label="lower" style={{textTransform: "none"}} color={defineSymbolsSetButtonColor('lower')}>
                                     abc
                                 </ToggleButton>
-                                <ToggleButton value="upper" aria-label="upper" >
+                                <ToggleButton value="upper" aria-label="upper" color={defineSymbolsSetButtonColor('upper')}>
                                     ABC
                                 </ToggleButton>
-                                <ToggleButton value="numbers" aria-label="numbers" >
+                                <ToggleButton value="numbers" aria-label="numbers" color={defineSymbolsSetButtonColor('numbers')}>
                                     123
                                 </ToggleButton>
-                                <ToggleButton value="special" aria-label="special" >
+                                <ToggleButton value="special" aria-label="special" color={defineSymbolsSetButtonColor('special')}>
                                     !@#
                                 </ToggleButton>
                             </ToggleButtonGroup>

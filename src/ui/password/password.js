@@ -11,21 +11,6 @@ import {createContext, useContext} from "react";
 
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
-
-export const PasswordContext = createContext();
-
-export function Password({passwordBuilder}) {
-    return (
-        <PasswordContext.Provider value={passwordBuilder}>
-            <div className="password">
-
-            </div>
-            <OutlinedCard />
-        </PasswordContext.Provider>
-    );
-}
-
-
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -39,10 +24,10 @@ import FormatColorFillIcon from '@mui/icons-material/FormatColorFill';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import {PasswordEvents} from "../../modules/password-builder/password-events";
 
-export function OutlinedCard() {
-    const passwordBuilder = useContext(PasswordContext);
-    const usedSymbolsSetName = passwordBuilder.setsToUse.map(setOfSymbols => setOfSymbols.name);
+export const PasswordContext = createContext();
 
+export function Password({passwordBuilder}) {
+    const usedSymbolsSetName = passwordBuilder.setsToUse.map(setOfSymbols => setOfSymbols.name);
     const [formats, setFormats] = React.useState(() => usedSymbolsSetName);
 
     const handleFormat = (event, formats) => {
@@ -53,7 +38,6 @@ export function OutlinedCard() {
     };
 
     const [predefinedLengthUsed, setPredefinedLengthUsed] = React.useState(passwordBuilder.getLength());
-
     const handlePredefinedLength = (e, newValue) => {
         if(newValue){
             passwordBuilder.setLength(newValue).build();
@@ -66,55 +50,94 @@ export function OutlinedCard() {
     React.useEffect(() => {passwordBuilder.getEvents().on(PasswordEvents.LENGTH_UPDATED,()=>setPredefinedLengthUsed(passwordBuilder.getLength()))},[]);
 
     return (
+        <PasswordContext.Provider value={passwordBuilder}>
+            <Card sx={{ minWidth: 275 }}>
+                <CardContent>
+                    <div className="head" style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                        overflow: "hidden",
+                    }}>
+                        <PasswordAsText />
+                        <div className="actions">
+                            <Renew />
+                            <Copy />
+                        </div>
+                    </div>
+
+
+                    <div>
+
+                    <ToggleButtonGroup
+                        value={formats}
+                        onChange={handleFormat}
+                        aria-label="symbols usage"
+                    >
+                        <ToggleButton value="lower" aria-label="lower" style={{textTransform: "none"}} >
+                            abc
+                        </ToggleButton>
+                        <ToggleButton value="upper" aria-label="upper" >
+                            ABC
+                        </ToggleButton>
+                        <ToggleButton value="numbers" aria-label="numbers" >
+                            123
+                        </ToggleButton>
+                        <ToggleButton value="special" aria-label="special" >
+                            !@#
+                        </ToggleButton>
+                    </ToggleButtonGroup>
+
+                    <ToggleButtonGroup
+                        value={predefinedLengthUsed}
+                        onChange={handlePredefinedLength}
+                        exclusive={true}
+                        aria-label="predefined-length"
+                    >
+                        <ToggleButton value={4} aria-label={4}>4</ToggleButton>
+                        <ToggleButton value={8} aria-label={8}>8</ToggleButton>
+                        <ToggleButton value={16} aria-label={16}>16</ToggleButton>
+                        <ToggleButton value={32} aria-label={32}>32</ToggleButton>
+                    </ToggleButtonGroup>
+
+                    <CustomLength />
+                    </div>
+
+                </CardContent>
+
+                <CardActions>
+
+                </CardActions>
+            </Card>
+
+        </PasswordContext.Provider>
+    );
+}
+
+
+
+
+export function OutlinedCard() {
+    const passwordBuilder = useContext(PasswordContext);
+
+
+
+
+
+
+    return (
         <Card sx={{ minWidth: 275 }}>
             <CardContent>
-                <PasswordAsText />
 
-                <ToggleButtonGroup
-                    value={formats}
-                    onChange={handleFormat}
-                    aria-label="symbols usage"
-                >
-                    <ToggleButton value="lower" aria-label="lower" style={{textTransform: "none"}} >
-                        abc
-                    </ToggleButton>
-                    <ToggleButton value="upper" aria-label="upper" >
-                        ABC
-                    </ToggleButton>
-                    <ToggleButton value="numbers" aria-label="numbers" >
-                        123
-                    </ToggleButton>
-                    <ToggleButton value="special" aria-label="special" >
-                        !@#
-                    </ToggleButton>
-                </ToggleButtonGroup>
 
-                <ToggleButtonGroup
-                    value={predefinedLengthUsed}
-                    onChange={handlePredefinedLength}
-                    exclusive={true}
-                    aria-label="predefined-length"
-                >
-                    <ToggleButton value={4} aria-label={4}>4</ToggleButton>
-                    <ToggleButton value={8} aria-label={8}>8</ToggleButton>
-                    <ToggleButton value={12} aria-label={12}>12</ToggleButton>
-                    <ToggleButton value={16} aria-label={16}>16</ToggleButton>
-                    <ToggleButton value={20} aria-label={20}>20</ToggleButton>
-                    <ToggleButton value={24} aria-label={24}>24</ToggleButton>
-                    <ToggleButton value={32} aria-label={32}>32</ToggleButton>
-                    <ToggleButton value={64} aria-label={64}>64</ToggleButton>
-                </ToggleButtonGroup>
+
 
                 <br />
                 <br />
 
-                <CustomLength />
+
             </CardContent>
 
-            <CardActions>
-                <Renew />
-                <Copy />
-            </CardActions>
         </Card>
     );
 }

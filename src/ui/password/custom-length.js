@@ -19,12 +19,10 @@ export function CustomLength() {
 
     return (
         <input
-            className="custom-length"
-            onChange={change}
             type="number"
-            min="0"
-            max="32"
             value={length}
+            onChange={change}
+            min="0"
             size="3"
         />
     );

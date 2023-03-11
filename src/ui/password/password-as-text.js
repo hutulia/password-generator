@@ -17,8 +17,7 @@ export function PasswordAsText() {
 
     return (
         <>
-            <Typography variant="h2" component="div" style={{
-                minHeight: "1.5em",
+            <Typography variant="h2" component="span" style={{
                 overflow: "hidden",
                 whiteSpace: "nowrap",
                 fontFamily: "monospace",

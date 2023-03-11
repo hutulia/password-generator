@@ -4,24 +4,14 @@ import * as React from 'react';
 import {PasswordAsText} from "./password-as-text";
 import {Copy} from "./copy";
 import {Renew} from "./renew";
-import {SymbolsSetUsage} from "./symbols-set-usage";
 import {CustomLength} from "./custom-length";
-import {PredefinedLength} from "./predefined-length";
 import {createContext, useContext} from "react";
 
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
-import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import FormatBoldIcon from '@mui/icons-material/FormatBold';
-import FormatItalicIcon from '@mui/icons-material/FormatItalic';
-import FormatUnderlinedIcon from '@mui/icons-material/FormatUnderlined';
-import FormatColorFillIcon from '@mui/icons-material/FormatColorFill';
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import {PasswordEvents} from "../../modules/password-builder/password-events";
 
 export const PasswordContext = createContext();
@@ -60,7 +50,10 @@ export function Password({passwordBuilder}) {
                         overflow: "hidden",
                     }}>
                         <PasswordAsText />
-                        <div className="actions">
+                        <div className="actions" style={{
+                            display: "flex",
+                            paddingLeft: "0.25em",
+                        }}>
                             <Renew />
                             <Copy />
                         </div>

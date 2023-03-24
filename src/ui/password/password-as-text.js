@@ -7,14 +7,7 @@ import {PasswordContext} from "./password";
 import { useContext } from "react";
 import Typography from "@mui/material/Typography";
 
-export function PasswordAsText() {
-    const passwordBuilder = useContext(PasswordContext);
-    const [passwordAsText, setPasswordAsText] = React.useState(passwordBuilder.getPassword());
-
-    React.useEffect(() => {
-        passwordBuilder.getEvents().on(PasswordEvents.UPDATED,()=>setPasswordAsText(passwordBuilder.getPassword()));
-    },[]);
-
+export function PasswordAsText({passwordAsText}) {
     return (
         <>
             <Typography variant="h2" component="span" style={{

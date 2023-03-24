@@ -1,6 +1,5 @@
 'use strict';
 import * as React from 'react';
-//import React from 'react';
 import {PasswordAsText} from "./password-as-text";
 import {Copy} from "./copy";
 import {Renew} from "./renew";
@@ -12,15 +11,19 @@ import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import {PasswordEvents} from "../../modules/password-builder/password-events";
 import Typography from '@mui/material/Typography';
-import Link from '@mui/material/Link';
 import Button from "@mui/material/Button";
-import {Divider} from "@mui/material";
+import {useState} from "react";
+import {PasswordEvents} from "../../modules/password-builder/password-events";
 
 export const PasswordContext = createContext();
 
 export function Password({passwordBuilder}) {
+    const [passwordAsText, setPasswordAsText] = useState(passwordBuilder.getPassword());
+    React.useEffect(() => {
+        passwordBuilder.getEvents().on(PasswordEvents.UPDATED,()=>setPasswordAsText(passwordBuilder.getPassword()));
+    },[]);
+
     const usedSymbolsSetName = passwordBuilder.setsToUse.map(setOfSymbols => setOfSymbols.name);
     const [symbolSetsNamesToUse, setSymbolSetsNamesToUse] = React.useState(() => usedSymbolsSetName);
 
@@ -51,7 +54,7 @@ export function Password({passwordBuilder}) {
                         overflow: "hidden",
                         marginBottom: "1em",
                     }}>
-                        <PasswordAsText />
+                        <PasswordAsText passwordAsText={passwordAsText}/>
 
                         <div className="actions" style={{
                             display: "flex",
@@ -106,45 +109,11 @@ export function Password({passwordBuilder}) {
                             <Button color='secondary' variant="outlined" onClick={()=>{setLength(24)}}>24</Button>
                             <Button color='secondary' variant="outlined" onClick={()=>{setLength(32)}}>32</Button>
                             <Button color='secondary' variant="outlined" onClick={()=>{setLength(64)}}>64</Button>
-
                         </div>
                     </div>
-
                 </CardContent>
-
-                <CardActions>
-
-                </CardActions>
             </Card>
 
         </PasswordContext.Provider>
-    );
-}
-
-
-
-
-export function OutlinedCard() {
-    const passwordBuilder = useContext(PasswordContext);
-
-
-
-
-
-
-    return (
-        <Card sx={{ minWidth: 275 }}>
-            <CardContent>
-
-
-
-
-                <br />
-                <br />
-
-
-            </CardContent>
-
-        </Card>
     );
 }

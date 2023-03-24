@@ -14,7 +14,7 @@ import Button from "@mui/material/Button";
 import {useState} from "react";
 import {PasswordEvents} from "../../modules/password-builder/password-events";
 import {PasswordHead} from "./PasswordHead";
-import {HeadActions} from "./HeadActions";
+import {PasswordHeadActions} from "./PasswordHeadActions";
 
 export const PasswordContext = createContext();
 
@@ -50,10 +50,10 @@ export function Password({passwordBuilder}) {
                 <CardContent>
                     <PasswordHead>
                         <PasswordAsText passwordAsText={password}/>
-                        <HeadActions>
+                        <PasswordHeadActions>
                             <Renew />
                             <Copy />
-                        </HeadActions>
+                        </PasswordHeadActions>
                     </PasswordHead>
 
                     <div className={'settings'}>

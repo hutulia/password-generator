@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-export function HeadActions({children}) {
+export function PasswordHeadActions({children}) {
     return (
         <div className="actions" style={{
             display: "flex",

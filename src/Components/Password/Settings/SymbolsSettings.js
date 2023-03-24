@@ -7,7 +7,26 @@ import ToggleButton from "@mui/material/ToggleButton";
 
 export default function SymbolsSettings({namesOfSymbolsSetsToUse, setNamesOfSymbolsSetsToUse}) {
     const calcColor = (symbolsSetName) => {
-        return namesOfSymbolsSetsToUse.includes(symbolsSetName) ? 'success' : '';
+        if(!namesOfSymbolsSetsToUse.includes(symbolsSetName)){
+            return '';
+        }
+
+        if(symbolsSetName == 'lower'){
+            return 'success';
+        }
+
+        if(symbolsSetName == 'upper'){
+            return 'info';
+        }
+
+        if(symbolsSetName == 'numbers'){
+            return 'warning';
+        }
+
+        if(symbolsSetName == 'special'){
+            return 'error';
+        }
+
     };
 
     return (
@@ -24,7 +43,7 @@ export default function SymbolsSettings({namesOfSymbolsSetsToUse, setNamesOfSymb
                 onChange={(event, symbolSetsNamesToUse) => setNamesOfSymbolsSetsToUse(symbolSetsNamesToUse)}
                 aria-label="symbols usage"
             >
-                <ToggleButton value="lower" aria-label="lower" style={{textTransform: "none"}} color={calcColor('lower')}>
+                <ToggleButton value="lower" aria-label="lower" color={calcColor('lower')} style={{textTransform: 'lowerCase'}}>
                     abc
                 </ToggleButton>
 

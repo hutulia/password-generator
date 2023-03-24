@@ -30,4 +30,8 @@ export class SymbolsSetRegistry {
             }
         });
     }
+
+    findSetBySymbol(symbol){
+        return this.items.find(s=>s.items.includes(symbol));
+    }
 }

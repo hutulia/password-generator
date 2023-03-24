@@ -14,16 +14,18 @@ export default function LengthSettings({length, setLength}) {
                 Довжина
             </Typography>
 
-            <div><CustomLength length={length} setLength={setLength}/></div>
+            <CustomLength length={length} setLength={setLength}/>
 
             <br />
 
-            <Button color='secondary' variant="outlined" onClick={()=>{setLength(4)}}>4</Button>
-            <Button color='secondary' variant="outlined" onClick={()=>{setLength(8)}}>8</Button>
-            <Button color='secondary' variant="outlined" onClick={()=>{setLength(12)}}>12</Button>
-            <Button color='secondary' variant="outlined" onClick={()=>{setLength(24)}}>24</Button>
-            <Button color='secondary' variant="outlined" onClick={()=>{setLength(32)}}>32</Button>
-            <Button color='secondary' variant="outlined" onClick={()=>{setLength(64)}}>64</Button>
+            <div  style={{display: 'flex'}}>
+                <Button color='secondary' onClick={()=>{setLength(4)}} style={{flexFrow: 6}}>4</Button>
+                <Button color='secondary' onClick={()=>{setLength(8)}} style={{flexFrow: 6}}>8</Button>
+                <Button color='secondary' onClick={()=>{setLength(12)}} style={{flexFrow: 6}}>12</Button>
+                <Button color='secondary' onClick={()=>{setLength(24)}} style={{flexFrow: 6}}>24</Button>
+                <Button color='secondary' onClick={()=>{setLength(32)}} style={{flexFrow: 6}}>32</Button>
+                <Button color='secondary' onClick={()=>{setLength(64)}} style={{flexFrow: 6}}>64</Button>
+            </div>
         </div>
     );
 }

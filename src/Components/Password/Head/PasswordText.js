@@ -4,20 +4,49 @@ import React from 'react';
 import Typography from "@mui/material/Typography";
 
 export default function PasswordText({passwordAsText}) {
-
     return (
         <>
-            <Typography variant="h2" component="span" style={{
+            <Typography color="success" variant="h2" component="span" style={{
                 overflow: "hidden",
                 whiteSpace: "nowrap",
-                fontFamily: "monospace",
                 fontWeight: "100",
                 lineHeight: "1.5em",
                 minHeight: "1.5em",
                 height: "1.5em",
                 display: "inline-block",
             }}>
-                {passwordAsText}
+                {passwordAsText.split('').map((symbol, i) => {
+                    const set = window.symbolsSetRegistry.findSetBySymbol(symbol);
+
+                    if(!set || !set.name){
+                        return <span>{symbol}</span>;
+                    }
+
+                    let color = '';
+
+                    if(set.name === 'lower'){
+                        color = 'success.main';
+                    }
+
+                    if(set.name === 'upper'){
+                        color = 'info.main';
+                    }
+
+                    if(set.name === 'numbers'){
+                        color = 'warning.main';
+                    }
+
+                    if(set.name === 'special'){
+                        color = 'error.main';
+                    }
+
+                    console.log(set.name, color);
+                    if(!color.length){
+                        return <span>{symbol}</span>;
+                    }
+
+                    return <Typography key={i} variant="h2" component="span" color={color}>{symbol}</Typography>
+                })}
             </Typography>
         </>
     );

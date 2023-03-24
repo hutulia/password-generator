@@ -19,16 +19,20 @@ export default function CustomLength({length, setLength}) {
     return (
         <div className={'custom-length'} style={{
             display: "flex",
+            justifyContent: "space-between",
+            alignItems: 'baseline',
         }}>
             <Button
                 onClick={() => {changeLength(-5)}}
                 size="large"
+                color='secondary'
             >
                 -5
             </Button>
             <Button
                 onClick={() => {changeLength(-1)}}
                 size="large"
+                color='secondary'
             >
                 -1
             </Button>
@@ -42,6 +46,7 @@ export default function CustomLength({length, setLength}) {
                 style = {{
                     width: "5em",
                     textAlign: "center",
+                    flexGrow: 1,
                 }}
                 InputLabelProps={{
                     shrink: true,
@@ -50,12 +55,14 @@ export default function CustomLength({length, setLength}) {
             <Button
                 onClick={() => {changeLength(1)}}
                 size="large"
+                color='secondary'
             >
                 +1
             </Button>
             <Button
                 onClick={() => {changeLength(5)}}
                 size="large"
+                color='secondary'
             >
                 +5
             </Button>

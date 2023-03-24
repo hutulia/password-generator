@@ -3,7 +3,7 @@
 import React from 'react';
 import Typography from "@mui/material/Typography";
 
-export function PasswordAsText({passwordAsText}) {
+export default function PasswordText({passwordAsText}) {
     return (
         <>
             <Typography variant="h2" component="span" style={{

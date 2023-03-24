@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-export function PasswordHead({children}) {
+export default function PasswordHead({children}) {
     return (
         <div
             className="head"

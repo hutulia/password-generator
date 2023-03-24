@@ -1,12 +1,10 @@
 'use strict';
 
 import React from 'react';
-import {PasswordContext} from "./password";
-import { useContext } from "react";
 import TextField from '@mui/material/TextField';
 import Button from "@mui/material/Button";
 
-export function CustomLength({length, setLength}) {
+export default function CustomLength({length, setLength}) {
     const changeLength = (diff) => {
         const oldValue = length;
         let newValue = oldValue+diff;

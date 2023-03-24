@@ -1,4 +1,4 @@
-export default class CopyTextToClipboardService {
+export default class CopyTextToClipboard {
     static copy(text){
         let input = document.createElement('input');
         input.value = text;

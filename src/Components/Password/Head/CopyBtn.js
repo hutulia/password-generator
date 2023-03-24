@@ -1,22 +1,21 @@
 'use strict';
 
-import CopyTextToClipboardService from "../../modules/copy-text-to-clipboard.service.js";
+import CopyTextToClipboard from "../../../../modules/copy-text-to-clipboard.js";
 import React from 'react';
-import Button from '@mui/material/Button';
-import {PasswordContext} from "./password";
-import { useContext } from "react";
+import { useState } from "react";
+import Button from '@mui/material/Button';;
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import CheckIcon from '@mui/icons-material/Check';
-export function Copy() {
-    const passwordBuilder = useContext(PasswordContext);
+
+export default function CopyBtn({password}) {
     const toCopySymbol = <ContentCopyIcon />;
     const copiedSymbol = <CheckIcon />;
 
-    const [currentSymbol, setCurrentSymbol] = React.useState(toCopySymbol);
+    const [currentSymbol, setCurrentSymbol] = useState(toCopySymbol);
 
     const copy = () => {
         setCurrentSymbol(copiedSymbol);
-        CopyTextToClipboardService.copy(passwordBuilder.getPassword())
+        CopyTextToClipboard.copy(password)
         setTimeout(() => {
             setCurrentSymbol(toCopySymbol);
         },750);

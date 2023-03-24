@@ -1,10 +1,10 @@
 import {PasswordBuilderBySymbolsSets} from "../modules/password-builder/PasswordBuilderBySymbolsSets";
-import {SymbolsSetService} from "./modules/symbols-set/symbols-set.service.js";
-import {lowerLetters, numbers, specialSymbols, upperLetters} from "./modules/symbols-set/symbols-lists.js";
-import {SymbolsSetRegistry} from "./modules/symbols-set/symbols-set-registry.js";
+import {SymbolsSetService} from "../modules/symbols-set/symbols-set.service.js";
+import {lowerLetters, numbers, specialSymbols, upperLetters} from "../modules/symbols-set/symbols-lists.js";
+import {SymbolsSetRegistry} from "../modules/symbols-set/symbols-set-registry.js";
 import React from 'react';
 import ReactDOM from "react-dom/client";
-import {App} from "./ui/App";
+import {App} from "./Components/App";
 
 window.symbolsSetRegistry = new SymbolsSetRegistry();
 window.symbolsSetRegistry.register(

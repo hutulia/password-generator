@@ -1,13 +1,7 @@
-import {PasswordEvents} from "./password-events";
-
-const events = require('events');
-
 export class BasePasswordBuilderService {
     password = '';
 
     length = 0;
-
-    events = new events.EventEmitter();
 
     constructor() {
         this.reset()
@@ -20,7 +14,6 @@ export class BasePasswordBuilderService {
 
     setLength(length){
         this.length = Number.parseInt(length);
-        this.events.emit(PasswordEvents.LENGTH_UPDATED);
         return this;
     }
 
@@ -28,13 +21,8 @@ export class BasePasswordBuilderService {
         return this.length;
     }
 
-    getEvents(){
-        return this.events;
-    }
-
     build(){
         this.password = this.calcPassword();
-        this.events.emit(PasswordEvents.UPDATED);
         return this;
     }
 

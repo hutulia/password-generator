@@ -16,6 +16,10 @@ export class PasswordBuilderBySetsService extends BasePasswordBuilderService{
         return this.setsToUse.includes(symbolsSet);
     }
 
+    usesByName(name){
+        return this.setsToUse.some(s => s.name === name);
+    }
+
     useSymbolsSets(...setsOfSymbols){
         setsOfSymbols.map(setOfSymbols => this.useSymbolsSet(setOfSymbols));
     }

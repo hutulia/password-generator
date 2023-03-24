@@ -20,32 +20,16 @@ import {PasswordHeadActions} from "./PasswordHeadActions";
 export const PasswordContext = createContext();
 
 export function Password({passwordBuilder}) {
-    const [password, setPassword] = useState(passwordBuilder.getPassword());
     const [length, setLength] = useState(passwordBuilder.getLength());
+    const [namesOfSymbolsSetsToUse, setNamesOfSymbolsSetsToUse] = useState(passwordBuilder.setsToUse.map(s => s.name));
+    const [password, setPassword] = useState(passwordBuilder.getPassword());
 
-    const buildPassword = () => {
+    useEffect(() => {
         passwordBuilder.setLength(length);
+        passwordBuilder.setsToUse = namesOfSymbolsSetsToUse.map(n => window.symbolsSetRegistry.findByName(n));
 
         setPassword(passwordBuilder.build().getPassword());
-    };
-
-    useEffect(() => {
-        buildPassword();
-    },[length]);
-
-    useEffect(() => {
-        passwordBuilder.getEvents().on(PasswordEvents.UPDATED,()=>setPassword(passwordBuilder.getPassword()));
-    },[]);
-
-    const usedSymbolsSetName = passwordBuilder.setsToUse.map(setOfSymbols => setOfSymbols.name);
-    const [symbolSetsNamesToUse, setSymbolSetsNamesToUse] = useState(() => usedSymbolsSetName);
-
-    const handleSymbolSetsToUse = (event, symbolSetsNamesToUse) => {
-        passwordBuilder.setsToUse = [];
-        symbolSetsNamesToUse.map(name => passwordBuilder.useSymbolsSet(window.symbolsSetRegistry.findByName(name)));
-        passwordBuilder.build();
-        setSymbolSetsNamesToUse(symbolSetsNamesToUse);
-    };
+    },[length, namesOfSymbolsSetsToUse]);
 
     const defineSymbolsSetButtonColor = (symbolsSetName) => {
         return passwordBuilder.uses(window.symbolsSetRegistry.findByName(symbolsSetName)) ? 'success' : '';
@@ -73,8 +57,8 @@ export function Password({passwordBuilder}) {
                             </Typography>
 
                             <ToggleButtonGroup
-                                value={symbolSetsNamesToUse}
-                                onChange={handleSymbolSetsToUse}
+                                value={namesOfSymbolsSetsToUse}
+                                onChange={(event, symbolSetsNamesToUse) => setNamesOfSymbolsSetsToUse(symbolSetsNamesToUse)}
                                 aria-label="symbols usage"
                             >
                                 <ToggleButton value="lower" aria-label="lower" style={{textTransform: "none"}} color={defineSymbolsSetButtonColor('lower')}>

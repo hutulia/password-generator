@@ -1,10 +1,9 @@
-import {PasswordBuilderBySymbolsSets} from "../modules/password-builder/PasswordBuilderBySymbolsSets";
-import {SymbolsSetService} from "../modules/symbols-set/symbols-set.service.js";
-import {lowerLetters, numbers, specialSymbols, upperLetters} from "../modules/symbols-set/symbols-lists.js";
-import {SymbolsSetRegistry} from "../modules/symbols-set/symbols-set-registry.js";
 import React from 'react';
 import ReactDOM from "react-dom/client";
-import {App} from "./Components/App";
+import {App} from "./App";
+import {lowerLetters, numbers, specialSymbols, upperLetters} from "../modules/symbols-set/symbols-lists.js";
+import {SymbolsSetService} from "../modules/symbols-set/symbols-set.service.js";
+import {SymbolsSetRegistry} from "../modules/symbols-set/symbols-set-registry.js";
 
 window.symbolsSetRegistry = new SymbolsSetRegistry();
 window.symbolsSetRegistry.register(
@@ -13,13 +12,5 @@ window.symbolsSetRegistry.register(
     new SymbolsSetService('numbers', numbers),
     new SymbolsSetService('special', specialSymbols),
 );
-
-window.passwordBuilder = new PasswordBuilderBySymbolsSets();
-window.passwordBuilder.setLength(8);
-window.passwordBuilder.useSymbolsSets(
-    window.symbolsSetRegistry.findByName('upper'),
-    window.symbolsSetRegistry.findByName('numbers')
-);
-window.passwordBuilder.build();
 
 ReactDOM.createRoot(document.querySelector('#app')).render(React.createElement(App, {passwordBuilder: window.passwordBuilder}));

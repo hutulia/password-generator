@@ -14,17 +14,18 @@ import RenewBtn from "./Head/RenewBtn";
 import PasswordSettings from "./Settings/PasswordSettings";
 import SymbolsSettings from "./Settings/SymbolsSettings";
 import LengthSettings from "./Settings/LengthSettings";
+import {PasswordBuilderBySymbolsSets} from "../../../modules/password-builder/PasswordBuilderBySymbolsSets";
 
-export default function Password({passwordBuilder}) {
-    const [length, setLength] = useState(passwordBuilder.getLength());
-    const [namesOfSymbolsSetsToUse, setNamesOfSymbolsSetsToUse] = useState(passwordBuilder.setsToUse.map(s => s.name));
-    const [password, setPassword] = useState(passwordBuilder.getPassword());
+export default function Password() {
+    const [length, setLength] = useState(4);
+    const [namesOfSymbolsSetsToUse, setNamesOfSymbolsSetsToUse] = useState(['lower','upper','numbers','special']);
+    const [password, setPassword] = useState('');
 
     const updatePassword = () => {
         setPassword(
-            passwordBuilder
+            (new PasswordBuilderBySymbolsSets())
                 .setLength(length)
-                .setsToUse(namesOfSymbolsSetsToUse.map(n => window.symbolsSetRegistry.findByName(n)))
+                .setSetsToUse(namesOfSymbolsSetsToUse.map(n => window.symbolsSetRegistry.findByName(n)))
                 .build()
                 .getPassword()
         );

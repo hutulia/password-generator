@@ -6,8 +6,8 @@ import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import ToggleButton from "@mui/material/ToggleButton";
 
 export default function SymbolsSettings({namesOfSymbolsSetsToUse, setNamesOfSymbolsSetsToUse}) {
-    const defineSymbolsSetButtonColor = (symbolsSetName) => {
-        return passwordBuilder.uses(window.symbolsSetRegistry.findByName(symbolsSetName)) ? 'success' : '';
+    const calcColor = (symbolsSetName) => {
+        return namesOfSymbolsSetsToUse.includes(symbolsSetName) ? 'success' : '';
     };
 
     return (
@@ -24,19 +24,19 @@ export default function SymbolsSettings({namesOfSymbolsSetsToUse, setNamesOfSymb
                 onChange={(event, symbolSetsNamesToUse) => setNamesOfSymbolsSetsToUse(symbolSetsNamesToUse)}
                 aria-label="symbols usage"
             >
-                <ToggleButton value="lower" aria-label="lower" style={{textTransform: "none"}} color={defineSymbolsSetButtonColor('lower')}>
+                <ToggleButton value="lower" aria-label="lower" style={{textTransform: "none"}} color={calcColor('lower')}>
                     abc
                 </ToggleButton>
 
-                <ToggleButton value="upper" aria-label="upper" color={defineSymbolsSetButtonColor('upper')}>
+                <ToggleButton value="upper" aria-label="upper" color={calcColor('upper')}>
                     ABC
                 </ToggleButton>
 
-                <ToggleButton value="numbers" aria-label="numbers" color={defineSymbolsSetButtonColor('numbers')}>
+                <ToggleButton value="numbers" aria-label="numbers" color={calcColor('numbers')}>
                     123
                 </ToggleButton>
 
-                <ToggleButton value="special" aria-label="special" color={defineSymbolsSetButtonColor('special')}>
+                <ToggleButton value="special" aria-label="special" color={calcColor('special')}>
                     !@#
                 </ToggleButton>
             </ToggleButtonGroup>

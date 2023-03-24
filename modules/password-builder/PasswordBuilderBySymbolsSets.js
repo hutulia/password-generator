@@ -7,9 +7,14 @@ export class PasswordBuilderBySymbolsSets extends BasePasswordBuilder{
         super();
     }
 
+    setSetsToUse(sets){
+        this.setsToUse = sets;
+        return this;
+    }
+
     reset() {
         super.reset();
-        this.setsToUse = [];
+        this.setSetsToUse([]);
     }
 
     uses(symbolsSet){

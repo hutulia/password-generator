@@ -21,15 +21,18 @@ export default function Password({passwordBuilder}) {
     const [password, setPassword] = useState(passwordBuilder.getPassword());
 
     const updatePassword = () => {
-        passwordBuilder.setLength(length);
-        passwordBuilder.setsToUse = namesOfSymbolsSetsToUse.map(n => window.symbolsSetRegistry.findByName(n));
-        setPassword(passwordBuilder.build().getPassword());
+        setPassword(
+            passwordBuilder
+                .setLength(length)
+                .setsToUse(namesOfSymbolsSetsToUse.map(n => window.symbolsSetRegistry.findByName(n)))
+                .build()
+                .getPassword()
+        );
     };
 
     useEffect(() => {
         updatePassword();
     },[length, namesOfSymbolsSetsToUse]);
-
 
     return (
         <Card sx={{ minWidth: 275 }}>

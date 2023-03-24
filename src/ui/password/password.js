@@ -13,7 +13,6 @@ import Typography from '@mui/material/Typography';
 import Button from "@mui/material/Button";
 import {useState} from "react";
 import {useEffect} from "react";
-import {PasswordEvents} from "../../modules/password-builder/password-events";
 import {PasswordHead} from "./PasswordHead";
 import {PasswordHeadActions} from "./PasswordHeadActions";
 
@@ -24,11 +23,14 @@ export function Password({passwordBuilder}) {
     const [namesOfSymbolsSetsToUse, setNamesOfSymbolsSetsToUse] = useState(passwordBuilder.setsToUse.map(s => s.name));
     const [password, setPassword] = useState(passwordBuilder.getPassword());
 
-    useEffect(() => {
+    const updatePassword = () => {
         passwordBuilder.setLength(length);
         passwordBuilder.setsToUse = namesOfSymbolsSetsToUse.map(n => window.symbolsSetRegistry.findByName(n));
-
         setPassword(passwordBuilder.build().getPassword());
+    };
+
+    useEffect(() => {
+        updatePassword();
     },[length, namesOfSymbolsSetsToUse]);
 
     const defineSymbolsSetButtonColor = (symbolsSetName) => {
@@ -42,7 +44,7 @@ export function Password({passwordBuilder}) {
                     <PasswordHead>
                         <PasswordAsText passwordAsText={password}/>
                         <PasswordHeadActions>
-                            <Renew />
+                            <Renew updatePassword={updatePassword}/>
                             <Copy />
                         </PasswordHeadActions>
                     </PasswordHead>

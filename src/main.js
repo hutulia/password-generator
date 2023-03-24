@@ -1,4 +1,4 @@
-import {PasswordBuilderBySetsService} from "./modules/password-builder/password-builder-by-sets.service.js";
+import {PasswordBuilderBySymbolsSets} from "../modules/password-builder/PasswordBuilderBySymbolsSets";
 import {SymbolsSetService} from "./modules/symbols-set/symbols-set.service.js";
 import {lowerLetters, numbers, specialSymbols, upperLetters} from "./modules/symbols-set/symbols-lists.js";
 import {SymbolsSetRegistry} from "./modules/symbols-set/symbols-set-registry.js";
@@ -14,7 +14,7 @@ window.symbolsSetRegistry.register(
     new SymbolsSetService('special', specialSymbols),
 );
 
-window.passwordBuilder = new PasswordBuilderBySetsService();
+window.passwordBuilder = new PasswordBuilderBySymbolsSets();
 window.passwordBuilder.setLength(8);
 window.passwordBuilder.useSymbolsSets(
     window.symbolsSetRegistry.findByName('upper'),

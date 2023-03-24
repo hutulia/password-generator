@@ -1,10 +1,6 @@
 'use strict';
 
-import {PasswordEvents} from "../../modules/password-builder/password-events.js";
-
 import React from 'react';
-import {PasswordContext} from "./password";
-import { useContext } from "react";
 import Typography from "@mui/material/Typography";
 
 export function PasswordAsText({passwordAsText}) {

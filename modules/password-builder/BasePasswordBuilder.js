@@ -1,4 +1,4 @@
-export class BasePasswordBuilderService {
+export class BasePasswordBuilder {
     password = '';
 
     length = 0;
@@ -32,14 +32,5 @@ export class BasePasswordBuilderService {
 
     getPassword(){
         return this.password;
-    }
-
-    /**
-     *
-     * @returns {*}
-     * @param symbols
-     */
-    getRandomSymbol(symbols){
-        return symbols[Math.floor(Math.random()*symbols.length)];
     }
 }

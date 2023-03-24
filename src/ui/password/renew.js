@@ -6,12 +6,10 @@ import Button from '@mui/material/Button';
 import {PasswordContext} from "./password";
 import { useContext } from "react";
 
-export function Renew() {
-    const passwordBuilder = useContext(PasswordContext);
-
+export function Renew({updatePassword}) {
     return (
         <Button
-            onClick={() => passwordBuilder.build()}
+            onClick={() => updatePassword()}
             size="large"
             startIcon={<RefreshIcon />}
         >

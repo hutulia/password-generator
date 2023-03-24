@@ -1,6 +1,6 @@
-import {BasePasswordBuilderService} from "./base-password-builder.service.js";
+import {BasePasswordBuilder} from "./BasePasswordBuilder.js";
 
-export class PasswordBuilderBySetsService extends BasePasswordBuilderService{
+export class PasswordBuilderBySymbolsSets extends BasePasswordBuilder{
     setsToUse = [];
 
     constructor() {

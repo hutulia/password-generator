@@ -35,6 +35,7 @@ export class BasePasswordBuilderService {
     build(){
         this.password = this.calcPassword();
         this.events.emit(PasswordEvents.UPDATED);
+        return this;
     }
 
     calcPassword(){

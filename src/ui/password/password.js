@@ -12,6 +12,7 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import Button from "@mui/material/Button";
 import {useState} from "react";
+import {useEffect} from "react";
 import {PasswordEvents} from "../../modules/password-builder/password-events";
 import {PasswordHead} from "./PasswordHead";
 import {PasswordHeadActions} from "./PasswordHeadActions";
@@ -20,12 +21,24 @@ export const PasswordContext = createContext();
 
 export function Password({passwordBuilder}) {
     const [password, setPassword] = useState(passwordBuilder.getPassword());
-    React.useEffect(() => {
+    const [length, setLength] = useState(passwordBuilder.getLength());
+
+    const buildPassword = () => {
+        passwordBuilder.setLength(length);
+
+        setPassword(passwordBuilder.build().getPassword());
+    };
+
+    useEffect(() => {
+        buildPassword();
+    },[length]);
+
+    useEffect(() => {
         passwordBuilder.getEvents().on(PasswordEvents.UPDATED,()=>setPassword(passwordBuilder.getPassword()));
     },[]);
 
     const usedSymbolsSetName = passwordBuilder.setsToUse.map(setOfSymbols => setOfSymbols.name);
-    const [symbolSetsNamesToUse, setSymbolSetsNamesToUse] = React.useState(() => usedSymbolsSetName);
+    const [symbolSetsNamesToUse, setSymbolSetsNamesToUse] = useState(() => usedSymbolsSetName);
 
     const handleSymbolSetsToUse = (event, symbolSetsNamesToUse) => {
         passwordBuilder.setsToUse = [];
@@ -36,12 +49,6 @@ export function Password({passwordBuilder}) {
 
     const defineSymbolsSetButtonColor = (symbolsSetName) => {
         return passwordBuilder.uses(window.symbolsSetRegistry.findByName(symbolsSetName)) ? 'success' : '';
-    };
-
-    const setLength = (length) => {
-        if(length !== passwordBuilder.getLength()){
-            passwordBuilder.setLength(length).build();
-        }
     };
 
     return (
@@ -93,7 +100,7 @@ export function Password({passwordBuilder}) {
                                 Довжина
                             </Typography>
 
-                            <div><CustomLength /></div>
+                            <div><CustomLength length={length} setLength={setLength}/></div>
 
                             <br />
 

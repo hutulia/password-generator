@@ -52,16 +52,16 @@ export default function Password() {
                 </PasswordHead>
 
                 <PasswordSettings>
+                    <LengthSettings
+                        length={length}
+                        setLength={setLength}
+                    />
+
                     <SymbolsSettings
                         namesOfSymbolsSetsToUse={namesOfSymbolsSetsToUse}
                         setNamesOfSymbolsSetsToUse={setNamesOfSymbolsSetsToUse}
                         useColors={useColors}
                         setUseColors={setUseColors}
-                    />
-
-                    <LengthSettings
-                        length={length}
-                        setLength={setLength}
                     />
                 </PasswordSettings>
             </CardContent>

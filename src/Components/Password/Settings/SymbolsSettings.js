@@ -1,14 +1,18 @@
 'use strict';
 
-import React from 'react';
+import React, {useState} from 'react';
 import Typography from "@mui/material/Typography";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import ToggleButton from "@mui/material/ToggleButton";
 import Switch from '@mui/material/Switch';
-import {FormControlLabel} from "@mui/material";
+import {Checkbox, FormControlLabel} from "@mui/material";
 
-export default function SymbolsSettings({namesOfSymbolsSetsToUse, setNamesOfSymbolsSetsToUse}) {
+export default function SymbolsSettings({namesOfSymbolsSetsToUse, setNamesOfSymbolsSetsToUse, useColors, setUseColors}) {
     const calcColor = (symbolsSetName) => {
+        if(!useColors){
+            return '';
+        }
+
         if(!namesOfSymbolsSetsToUse.includes(symbolsSetName)){
             return '';
         }
@@ -28,8 +32,6 @@ export default function SymbolsSettings({namesOfSymbolsSetsToUse, setNamesOfSymb
         if(symbolsSetName == 'special'){
             return 'error';
         }
-
-
     };
 
     const lowerUsed = namesOfSymbolsSetsToUse.includes('lower');
@@ -37,10 +39,15 @@ export default function SymbolsSettings({namesOfSymbolsSetsToUse, setNamesOfSymb
     const numbersUsed = namesOfSymbolsSetsToUse.includes('numbers');
     const specialUsed = namesOfSymbolsSetsToUse.includes('special');
 
-    const lowerColor = lowerUsed ? "success.main" : 'black';
-    const upperColor = upperUsed ? "info.main" : 'black';
-    const numbersColor = numbersUsed ? "warning.main" : 'black';
-    const specialColor = specialUsed ? "error.main" : 'black';
+    const lowerColor = useColors && lowerUsed ? "success.main" : 'black';
+    const upperColor = useColors && upperUsed ? "info.main" : 'black';
+    const numbersColor = useColors && numbersUsed ? "warning.main" : 'black';
+    const specialColor = useColors && specialUsed ? "error.main" : 'black';
+
+    const lowerSwitchColor = useColors && lowerUsed ? "success" : 'default';
+    const upperSwitchColor = useColors && upperUsed ? "info" : 'default';
+    const numbersSwitchColor = useColors && numbersUsed ? "warning" : 'default';
+    const specialSwitchColor = useColors && specialUsed ? "error" : 'default';
 
     const handleChange = (setName, isActive) => {
         const newSetNames = [];
@@ -60,8 +67,6 @@ export default function SymbolsSettings({namesOfSymbolsSetsToUse, setNamesOfSymb
     const handleChangeNumbers = (e) => {handleChange('numbers',e.target.checked)};
     const handleChangeSpecial = (e) => {handleChange('special',e.target.checked)};
 
-
-
     return (
         <div className={'settings-symbols'} style={{
             flexGrow: "1",
@@ -72,25 +77,35 @@ export default function SymbolsSettings({namesOfSymbolsSetsToUse, setNamesOfSymb
             </Typography>
 
             <FormControlLabel
-                control={<Switch checked={lowerUsed} color={"success"} onChange={handleChangeLower}/>}
+                control={<Switch checked={lowerUsed} color={lowerSwitchColor} onChange={handleChangeLower}/>}
                 label={<Typography component="span" color={lowerColor}>ab</Typography>}
             />
 
             <FormControlLabel
-                control={<Switch checked={upperUsed} color={"info"} onChange={handleChangeUpper}/>}
+                control={<Switch checked={upperUsed} color={upperSwitchColor} onChange={handleChangeUpper}/>}
                 label={<Typography component="span" color={upperColor}>AB</Typography>}
             />
 
 
             <FormControlLabel
-                control={<Switch checked={numbersUsed} color={"warning"} onChange={handleChangeNumbers}/>}
+                control={<Switch checked={numbersUsed} color={numbersSwitchColor} onChange={handleChangeNumbers}/>}
                 label={<Typography component="span" color={numbersColor}>12</Typography>}
             />
 
             <FormControlLabel
-                control={<Switch checked={specialUsed} color={"error"} onChange={handleChangeSpecial}/>}
+                control={<Switch checked={specialUsed} color={specialSwitchColor} onChange={handleChangeSpecial}/>}
                 label={<Typography component="span" color={specialColor}>!@</Typography>}
             />
+
+            <br />
+            <br />
+
+
+            <FormControlLabel
+                control={<Checkbox checked={useColors} onChange={(e) => {setUseColors(e.target.checked)}}/>}
+                label="Кольори"
+            />
+
         </div>
     );
 }

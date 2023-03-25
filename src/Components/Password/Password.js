@@ -20,6 +20,7 @@ export default function Password() {
     const [length, setLength] = useState(4);
     const [namesOfSymbolsSetsToUse, setNamesOfSymbolsSetsToUse] = useState(['lower','upper','numbers','special']);
     const [password, setPassword] = useState('');
+    const [useColors, setUseColors] = useState(true);
 
     const updatePassword = () => {
         setPassword(
@@ -39,7 +40,11 @@ export default function Password() {
         <Card sx={{ minWidth: 275 }}>
             <CardContent>
                 <PasswordHead>
-                    <PasswordText passwordAsText={password}/>
+                    <PasswordText
+                        passwordAsText={password}
+                        useColors={useColors}
+                        setUseColors={setUseColors}
+                    />
                     <PasswordHeadActions>
                         <RenewBtn updatePassword={updatePassword}/>
                         <CopyBtn password={password}/>
@@ -50,6 +55,8 @@ export default function Password() {
                     <SymbolsSettings
                         namesOfSymbolsSetsToUse={namesOfSymbolsSetsToUse}
                         setNamesOfSymbolsSetsToUse={setNamesOfSymbolsSetsToUse}
+                        useColors={useColors}
+                        setUseColors={setUseColors}
                     />
 
                     <LengthSettings

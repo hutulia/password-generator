@@ -3,7 +3,7 @@
 import React from 'react';
 import Typography from "@mui/material/Typography";
 
-export default function PasswordText({passwordAsText}) {
+export default function PasswordText({passwordAsText, useColors, setUseColors}) {
     return (
         <>
             <Typography color="success" variant="h2" component="span" style={{
@@ -18,7 +18,7 @@ export default function PasswordText({passwordAsText}) {
                 {passwordAsText.split('').map((symbol, i) => {
                     const set = window.symbolsSetRegistry.findSetBySymbol(symbol);
 
-                    if(!set || !set.name){
+                    if(!useColors || !set || !set.name){
                         return <span>{symbol}</span>;
                     }
 

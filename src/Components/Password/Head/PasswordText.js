@@ -40,7 +40,6 @@ export default function PasswordText({passwordAsText}) {
                         color = 'error.main';
                     }
 
-                    console.log(set.name, color);
                     if(!color.length){
                         return <span>{symbol}</span>;
                     }

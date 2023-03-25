@@ -18,12 +18,11 @@ export default function LengthSettings({length, setLength}) {
 
             <br />
 
-            <div  style={{display: 'flex'}}>
+            <div  style={{display: 'flex', justifyContent: "space-between"}}>
                 <Button color='secondary' onClick={()=>{setLength(4)}} style={{flexFrow: 6}}>4</Button>
                 <Button color='secondary' onClick={()=>{setLength(8)}} style={{flexFrow: 6}}>8</Button>
-                <Button color='secondary' onClick={()=>{setLength(12)}} style={{flexFrow: 6}}>12</Button>
+                <Button color='secondary' onClick={()=>{setLength(16)}} style={{flexFrow: 1}}>12</Button>
                 <Button color='secondary' onClick={()=>{setLength(24)}} style={{flexFrow: 6}}>24</Button>
-                <Button color='secondary' onClick={()=>{setLength(32)}} style={{flexFrow: 6}}>32</Button>
                 <Button color='secondary' onClick={()=>{setLength(64)}} style={{flexFrow: 6}}>64</Button>
             </div>
         </div>

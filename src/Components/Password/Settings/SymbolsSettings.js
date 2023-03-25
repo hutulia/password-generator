@@ -76,30 +76,33 @@ export default function SymbolsSettings({namesOfSymbolsSetsToUse, setNamesOfSymb
                 Символи
             </Typography>
 
-            <FormControlLabel
-                control={<Switch checked={lowerUsed} color={lowerSwitchColor} onChange={handleChangeLower}/>}
-                label={<Typography component="span" color={lowerColor}>ab</Typography>}
-            />
+            <div style={{
+                display: "flex",
+                justifyContent: "space-between",
+            }}>
+                <FormControlLabel
+                    control={<Switch checked={lowerUsed} color={lowerSwitchColor} onChange={handleChangeLower}/>}
+                    label={<Typography component="span" color={lowerColor}>ab</Typography>}
+                />
 
-            <FormControlLabel
-                control={<Switch checked={upperUsed} color={upperSwitchColor} onChange={handleChangeUpper}/>}
-                label={<Typography component="span" color={upperColor}>AB</Typography>}
-            />
+                <FormControlLabel
+                    control={<Switch checked={upperUsed} color={upperSwitchColor} onChange={handleChangeUpper}/>}
+                    label={<Typography component="span" color={upperColor}>AB</Typography>}
+                />
 
 
-            <FormControlLabel
-                control={<Switch checked={numbersUsed} color={numbersSwitchColor} onChange={handleChangeNumbers}/>}
-                label={<Typography component="span" color={numbersColor}>12</Typography>}
-            />
+                <FormControlLabel
+                    control={<Switch checked={numbersUsed} color={numbersSwitchColor} onChange={handleChangeNumbers}/>}
+                    label={<Typography component="span" color={numbersColor}>12</Typography>}
+                />
 
-            <FormControlLabel
-                control={<Switch checked={specialUsed} color={specialSwitchColor} onChange={handleChangeSpecial}/>}
-                label={<Typography component="span" color={specialColor}>!@</Typography>}
-            />
+                <FormControlLabel
+                    control={<Switch checked={specialUsed} color={specialSwitchColor} onChange={handleChangeSpecial}/>}
+                    label={<Typography component="span" color={specialColor}>!@</Typography>}
+                />
+            </div>
 
             <br />
-            <br />
-
 
             <FormControlLabel
                 control={<Checkbox checked={useColors} onChange={(e) => {setUseColors(e.target.checked)}}/>}

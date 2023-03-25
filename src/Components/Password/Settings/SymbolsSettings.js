@@ -44,10 +44,10 @@ export default function SymbolsSettings({namesOfSymbolsSetsToUse, setNamesOfSymb
     const numbersColor = useColors && numbersUsed ? "warning.main" : 'black';
     const specialColor = useColors && specialUsed ? "error.main" : 'black';
 
-    const lowerSwitchColor = useColors && lowerUsed ? "success" : 'default';
-    const upperSwitchColor = useColors && upperUsed ? "info" : 'default';
-    const numbersSwitchColor = useColors && numbersUsed ? "warning" : 'default';
-    const specialSwitchColor = useColors && specialUsed ? "error" : 'default';
+    const lowerSwitchColor = useColors && lowerUsed ? "success" : 'primary';
+    const upperSwitchColor = useColors && upperUsed ? "info" : 'primary';
+    const numbersSwitchColor = useColors && numbersUsed ? "warning" : 'primary';
+    const specialSwitchColor = useColors && specialUsed ? "error" : 'primary';
 
     const handleChange = (setName, isActive) => {
         const newSetNames = [];
@@ -108,7 +108,6 @@ export default function SymbolsSettings({namesOfSymbolsSetsToUse, setNamesOfSymb
                 control={<Checkbox checked={useColors} onChange={(e) => {setUseColors(e.target.checked)}}/>}
                 label="Кольори"
             />
-
         </div>
     );
 }

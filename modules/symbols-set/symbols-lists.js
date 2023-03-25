@@ -1,4 +1,4 @@
-export const lowerLetters = ['a','b','c','d','e','f','g'];
+export const lowerLetters = 'abcdefghkmnpqrstuvwxyz'.split('');
 export const upperLetters = lowerLetters.map((symbol)=>symbol.toUpperCase());
-export const numbers = ['1','2','3','4'];
-export const specialSymbols = ['!','@','#','$','-','_'];
+export const numbers = '1234567890'.split('');
+export const specialSymbols = '!@#$%^&*()_+-=~'.split('');

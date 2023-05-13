@@ -1,34 +1,26 @@
 {
-  "devDependencies": {
-    "babel-core": "^6.26.3",
-    "babel-loader": "^9.1.2",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-react": "^6.24.1",
-    "babel-webpack-plugin": "^0.1.2",
-    "webpack": "^5.76.0",
-    "webpack-cli": "^5.0.1"
-  },
+  "name": "pg",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
-    "build_old": "webpack --config webpack.config.js",
-    "start": "webpack-dev-server --mode development --open --hot",
-    "comment": "update version at index.html",
-    "build": "webpack --mode production",
-    "build:watch": "webpack --mode development --watch",
-    "serve": "serve .",
-    "start:dev": "serve . && webpack --mode development --watch"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
-    "@babel/cli": "^7.21.0",
-    "@emotion/react": "^11.10.6",
-    "@emotion/styled": "^11.10.6",
-    "@fontsource/roboto": "^4.5.8",
-    "@mui/icons-material": "^5.11.11",
-    "@mui/material": "^5.11.12",
-    "babel-preset-react-app": "^10.0.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4",
-    "webpack-dev-server": "^4.11.1"
+    "@emotion/react": "^11.11.0",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.11.16",
+    "@mui/material": "^5.13.0",
+    "@types/node": "20.1.4",
+    "@types/react": "18.2.6",
+    "@types/react-dom": "18.2.4",
+    "eslint": "8.40.0",
+    "eslint-config-next": "13.4.2",
+    "next": "13.4.2",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "typescript": "5.0.4"
   }
 }

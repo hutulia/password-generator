@@ -3,7 +3,7 @@
 import React from 'react';
 import Typography from "@mui/material/Typography";
 
-export default function PasswordText({passwordAsText, useColors, setUseColors}) {
+export default function PasswordText({passwordAsText, useColors, setUseColors, symbolsSetRegistry}) {
     return (
         <>
             <Typography color="success" variant="h2" component="span" style={{
@@ -16,10 +16,10 @@ export default function PasswordText({passwordAsText, useColors, setUseColors}) 
                 display: "inline-block",
             }}>
                 {passwordAsText.split('').map((symbol, i) => {
-                    const set = window.symbolsSetRegistry.findSetBySymbol(symbol);
+                    const set = symbolsSetRegistry.findSetBySymbol(symbol);
 
                     if(!useColors || !set || !set.name){
-                        return <span>{symbol}</span>;
+                        return <span key={i}>{symbol}</span>;
                     }
 
                     let color = '';
@@ -41,7 +41,7 @@ export default function PasswordText({passwordAsText, useColors, setUseColors}) 
                     }
 
                     if(!color.length){
-                        return <span>{symbol}</span>;
+                        return <span key={i}>{symbol}</span>;
                     }
 
                     return <Typography key={i} variant="h2" component="span" color={color}>{symbol}</Typography>

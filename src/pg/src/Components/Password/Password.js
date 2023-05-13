@@ -16,7 +16,7 @@ import SymbolsSettings from "./Settings/SymbolsSettings";
 import LengthSettings from "./Settings/LengthSettings";
 import {PasswordBuilderBySymbolsSets} from "../../../modules/password-builder/PasswordBuilderBySymbolsSets";
 
-export default function Password() {
+export default function Password({symbolsSetRegistry}) {
     const [length, setLength] = useState(4);
     const [namesOfSymbolsSetsToUse, setNamesOfSymbolsSetsToUse] = useState(['lower','upper','numbers','special']);
     const [password, setPassword] = useState('');
@@ -26,7 +26,7 @@ export default function Password() {
         setPassword(
             (new PasswordBuilderBySymbolsSets())
                 .setLength(length)
-                .setSetsToUse(namesOfSymbolsSetsToUse.map(n => window.symbolsSetRegistry.findByName(n)))
+                .setSetsToUse(namesOfSymbolsSetsToUse.map(n => symbolsSetRegistry.findByName(n)))
                 .build()
                 .getPassword()
         );
@@ -44,6 +44,7 @@ export default function Password() {
                         passwordAsText={password}
                         useColors={useColors}
                         setUseColors={setUseColors}
+                        symbolsSetRegistry={symbolsSetRegistry}
                     />
                     <PasswordHeadActions>
                         <RenewBtn updatePassword={updatePassword}/>

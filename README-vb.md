@@ -10,5 +10,4 @@
 - npm update
 - npm run dev (http://localhost:3000) - перевірити
 - commit, push
-
-Залити (див Deploy)
+- Залити (див Deploy)
